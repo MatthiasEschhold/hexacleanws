@@ -18,6 +18,8 @@ public class CleanArchitectureTest {
                 .adapterOut("..adapter.out..")
                 .useCaseIn("..usecase.in..")
                 .useCaseOut("..usecase.out..")
+                .adapterOutOfAdapterOutUseCaseInPattern("..garage.order.adapter.out..")
+                .applicationService("..parts.catalogue.appservice..")
                 .ignore("..domain.dto..", "..domain.command..");
         rule.check(javaClasses);
     }
