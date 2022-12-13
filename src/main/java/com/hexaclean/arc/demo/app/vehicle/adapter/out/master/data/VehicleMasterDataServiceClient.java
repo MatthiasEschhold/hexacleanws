@@ -3,7 +3,6 @@ package com.hexaclean.arc.demo.app.vehicle.adapter.out.master.data;
 import com.hexaclean.arc.demo.app.vehicle.adapter.out.master.data.dto.EquipmentDto;
 import com.hexaclean.arc.demo.app.vehicle.adapter.out.master.data.dto.EquipmentListDto;
 import com.hexaclean.arc.demo.app.vehicle.adapter.out.master.data.dto.VehicleDataDto;
-import com.hexaclean.arc.demo.app.vehicle.domain.dto.VehicleMasterDataDomainDto;
 import com.hexaclean.arc.demo.app.vehicle.domain.model.MileageUnitValue;
 import com.hexaclean.arc.demo.app.vehicle.domain.model.VehicleMasterData;
 import com.hexaclean.arc.demo.app.vehicle.domain.model.Vin;
