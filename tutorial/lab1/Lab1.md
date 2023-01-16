@@ -37,8 +37,8 @@ affects all the classes in that package and no other package._
 Some people also say that the _common closure principle_ describes the _single responsibility principle_ for packages.
 The reason is that the same kind of changes is in most cases related to functional or domain-related requirements.
 
-The conclusion is that the package should be sliced vertically by domain object and functions (e.g. _vehicle_ or _
-vehicle data management_) and not horizontally by technical characteristics (e.g. _controller_ or _services_). There is
+The conclusion is that the package should be sliced vertically by domain object and functions (e.g. _vehicle_ or 
+_vehicle data_) and not horizontally by technical characteristics (e.g. _controller_ or _services_). There is
 another principle, the so-called
 _separation of concerns_, which describes the same idea.
 
@@ -64,35 +64,37 @@ responsibility principle affects the class level.
 
 This is also the case for the other principles of SOLID. SOLID stands for
 
-* **single responsibility principle**
-* open closed principle
-* liskov substitution principle
-* **interface segregation principle**
-* **dependency inversion principle**
+* **Single Responsibility Principle**
+* Open Closed Principle
+* Liskov Substitution Principle
+* **Interface Segregation Principle**
+* **Dependency Inversion Principle**
 
-During the training, we discuss the principles highlighted in bold and also some others that not belongs to SOLID
-directly.
+During the training, we discuss the principles highlighted in bold.
 
-An associated goal is to separate technical and domain-related aspects within the common closure ( or in other words
-the _domain module_). This could be reached by class-stereotypes containing a clear task, that this stereotype has to
-do. For the clean architecture pattern class-stereotypes can look like follows:
+An associated goal is to separate technical and domain-related aspects within the common closure. 
+This could be reached by class stereotypes containing a clear task, that this stereotype has to
+do. The collection of classes is encapsulated in a common closure.  In other words, 
+the application will be modularized around domain-related functionality based on _domain modules_. 
+For the clean architecture pattern class stereotypes can look like follows:
 
 ![Class stereotypes of clean architecture pattern](../img/stereotypes-within-common-closure.png)
 
-We will meet all class-stereotype step by step.
+In this training we will meet all class stereotypes step by step.
 
-## Package Structure Variants Within Clean Architecture Pattern
+## Structuring Domain Modules Within Clean Architecture Pattern
 
-In the first step, you have to decide which package style you want to use.
+At the top architectural level, the application is structured by _domain modules_.
 
-There are several package structure variants, that can be applied within the clean architecture pattern:
+For _domain modules_ there exists several variants to structure internally according to 
+the principles of the clean architecture pattern. The variants are:
 
 * architectural expressive
 * architectural expressive domain
 * rings by layers
 
 The recommendation is to use **architectural expressive**. Because layers are something you are more familiar with and
-in this variant the concepts of clean architecture pattern will become more visible to you.
+in this variant the concepts of clean architecture pattern will become more visible.
 
 ### Rings as Layers
 
@@ -102,8 +104,8 @@ The _domain module_ is structured simple according to the rings of the clean arc
 
 ### Architectural Expressive Domain
 
-In this variant the _use case ring_ is separated in incoming (_in_) and outgoing (_out_) use cases. Addtionalliy, the _
-domain ring_ is separared in _service_ and _model_.
+In this variant the _use case ring_ is separated in incoming (_in_) and outgoing (_out_) use cases. Addtionalliy, the 
+_domain ring_ is separared in _service_ and _model_.
 
 ![Package structure variant architectural expressive domain](../img/architectural-expressive-domain.png)
 
@@ -122,7 +124,7 @@ In this package structure variant the adapter ring is also structured according 
 3. Ensure that the <i>Vehicle</i> can only be created with a valid vehicle identification number (vin)
 4. Override equals, so that the Vehicle is the same object when the VIN is the same
 5. A vehicle identification number is valid when the value follows the regex pattern below. Throw an
-   IllegalStateException in case of a validations error.
+   _Exception_ in case of a validations error.
 
 **Java & Kotlin**
 
@@ -150,17 +152,9 @@ In this package structure variant the adapter ring is also structured according 
 
 #### Verify your Implementation
 
-The project comes with a first architecture test. Additionally, the tutorials' folder contains unit test for each coding
-task.
-
-Copy the unit test and after implementing a task to the prepared test folder structure, build the project and run the
-tests. Fix the implementation when neccessary.
-
-In test folder of the project there is a prepared package structure. In are prepared architecture tests for each lab.
-Addtionally there are unit tests in _tutorial/lab/<number>_.
-
-You can check four implementations by copying the unit tests to the source folder, add the test to the classpath, and
-run the test.
+The demo projects contains architecture tests and unit tests to verify your implementation.
+In the most cases it is neccessary to uncomment in the unit tests, after implementing the task. It is
+possible that you have to fix the import statements in the unit tests.
 
 **RUN** _DomainRing_Task_1_1_
 
@@ -170,7 +164,7 @@ run the test.
 
 ### Task 1.2: Create the (Domain) Service for the Root Entity
 
-1. Create the (domain) service <i>VehicleService</i> and place it in the designated package
+1. Create the class stereotype (domain) service <i>VehicleService</i> and place it in the designated package
 2. The <i>VehicleService</i> should offer following method
 
 **Java**
@@ -199,8 +193,12 @@ public VehicleRootEntity FindByVin(Vin vin){...}
 
 ```
 
-Currently, it is enough to return a hard-coded instance of the class <i>Vehicle</i>. Use this VIN: WP0ZZZ99ZTS392155
+Currently, it is enough to return a hard-coded instance of the class <i>Vehicle</i>.
+```java
 
+WP0ZZZ99ZTS392155
+
+```
 #### Verify your Implementation
 
 **RUN** _DomainRing_Task_1_2_
@@ -212,7 +210,7 @@ Currently, it is enough to return a hard-coded instance of the class <i>Vehicle<
 ### Task 1.3 [Optional]: Meet domainprimitives-java
 
 Have a look at [domainprimitives-java](https://github.com/domain-primitives/domain-primitives-java) and compare it to
-the native approach you implemented.
+the native validation approach you implemented.
 
 If you want, adapt your implementation. There are all dependencies you need already configured in the pom.xml. Or use
 the following declaration:
@@ -230,12 +228,12 @@ The idea is not unqiue. There are several similiar libraries, like
 
 * https://github.com/albertattard/domain-primitives-api or
 * https://github.com/prashantbasawa/simple-validation-framework
-* etc.
+* and others
 
-Please notice: There are not evaluated and used from my side.
+Please notice: There are not evaluated from my side.
 
 It exist also concepts in the [java and spring ecosystem](https://reflectoring.io/bean-validation-with-spring-boot/)
-for implementing self-validating domain objects.
+for implementing self-validating domain objects called _bean validation_.
 
 #### For Kotlin Coders
 
@@ -258,5 +256,4 @@ consider the time.
 
 #### For C# Coders
 
-Do you know similiar approaches like _domainprimitives-java_? Discuss this in a _Breakout Room_ and maybe used this in
-your implementation.
+Do you know similiar approaches like _domainprimitives-java_? Discuss this in a _Breakout Room_ and apply it in your implementation.
