@@ -1,0 +1,161 @@
+# The Domain Grows
+
+## Implement the Domain Model
+
+<details>
+<summary>Coding Task 4.1</summary>
+
+<ol>
+    <li>
+        Understand the root entity <i>Vehicle</i> and implement the missing value object according to the UML
+        class diagram and table below.
+    </li>
+    <li>
+    
+    </li>
+</ol>
+
+![Vehicle domain model](../img/vehicle-domain-model.png)
+
+<details>
+<summary>Value Object Validation Rules</summary>
+
+<table>
+    <tr>
+        <th>Domain Object</th>
+        <th>Validation Rule</th>
+    </tr>
+    <tr>
+        <td>LicensePlate</td>
+        <td>A-ZÖÜÄ]{1,3}-[A-ZÖÜÄ]{1,2} [1-9]{1}[0-9]{1,3}</td>
+    </tr>
+    <tr>
+        <td>EquipmentCode</td>
+        <td>[A-Z]{2}[0-9]{3}</td>
+    </tr>
+    <tr>
+        <td>Mileage</td>
+        <td>no negative value (mileage >= 0)</td>
+    </tr>
+</table>
+</details>
+
+<details>
+<summary>Root Entity Validation Rules</summary>
+
+<table>
+    <tr>
+        <th>Domain Object</th>
+        <th>Validation Rule</th>
+    </tr>
+    <tr>
+        <td>VehicleMotionData</td>
+        <td>All fields are mandatory, all values must fulfil the validation rules</td>
+    </tr>
+    <tr>
+        <td>Vehicle</td>
+        <td>VehicleMotionData</td>
+    </tr>
+</table>
+
+</details>
+
+</details>
+
+<details>
+<summary>Verify 4.1</summary>
+<b>RUN</b> DomainRing_Task_4_1
+<br/>
+<b>RUN</b> ArchitectureTest_Task_4_1
+
+</details>
+
+## Extend the Input Adapter
+
+<details>
+<summary>Coding Task 4.2</summary>
+
+Extend the <i>VehicleResource</i> like described as follows and adapt the <i>VehicleController</i> as well as 
+the <i>VehicleToVehicleResourceMapper</i>.
+
+![Vehicle resource](../img/vehicle-resource.png)
+
+</details>
+
+<details>
+<summary>Verify 4.2</summary>
+
+<b>RUN</b> InputAdapter_Task_4_2
+<br/>
+<b>RUN</b> all architecture tests
+
+</details>
+
+## Introduce the VehicleMasterDataServiceClient
+
+<details>
+<summary>Coding Task 4.3</summary>
+
+There are some constraints given by the company context. There is one central system for 
+vehicle master data. From this
+system needed master data must be queried.
+
+Due to this you have to introduce the <i>VehicleMasterDataServiceClient</i> and create the adapter implementation with the
+name <i>VehicleMasterDataToVehiceDtoMapper</i>. For this task the external data object <i>VehicleDataDto</i> 
+(package <i>vehicle/adapter/out/dto</i>) and the outgoing use case FetchVehicleMasterData 
+(package <i>vehicle/usecase/out</i>) already exists.
+
+The external API returns a lot of information we do not need in our domain. This is visible in the
+<i>VehicleDataDto</i> class. For example the property <i>salesRelatedInformation</i> is not neccessary for our domain.
+
+Due to this we only extract the properties we defined in the
+<i>VehicleMasterData</i> domain object. Have a look at the <i>VehicleDataDto</i> and implement the service client and mapper.
+
+</details>
+
+<details>
+<summary>Verify 4.3</summary>
+
+<b>RUN</b> OutputAdapter_Task_4_3
+<br/>
+<b>RUN</b> all architecture tests
+
+</details>
+
+## Extend the Output Adapter
+
+<details>
+<summary>Coding Task 4.4</summary>
+
+The vehicle motion data and other informations that not belongs to vehicle master data will be store in the database
+of our application. This means we are owner of data and state for vehicle motion data.
+
+Extend the <i>VehicleDbEntity</i> and the <i>VehicleToVehicleDbEntityMapper</i> as described in the diagram.
+
+![Vehicle db entity](../img/vehicle-db-entity.png)
+
+</details>
+
+<details>
+<summary>Verify 4.4</summary>
+<b>RUN</b> OutputAdapter_Task_4_4
+<br/>
+<b>RUN</b>  all architecture tests
+
+</details>
+
+## Extend the VehicleService
+
+<details>
+<summary>Coding Task 4.5</summary>
+
+Extend the <i>VehicleService</i>, so that vehicle motion data will be queried from database, and 
+vehicle master data will be queried from a external API.
+
+</details>
+
+<details>
+<summary>Verify 4.5</summary>
+<b>RUN</b> OutputAdapter_Task_4_5.java
+<b>RUN</b> all architecture tests
+</details>

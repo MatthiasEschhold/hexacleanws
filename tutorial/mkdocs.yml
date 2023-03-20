@@ -1,0 +1,61 @@
+---
+site_name: Clean Architecture Training
+site_url: https://pages.git/clean-architecture-training
+repo_url: https://matthiaseschhold.github.io/hexacleanws/
+repo_name: MatthiasEschhold/hexacleanws
+edit_uri: edit/develop/documentation/docs/
+
+extra_css:
+  - css/custom.css
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - footnotes
+  - attr_list
+  - toc:
+      toc_depth: 2-6
+      permalink: ⚓︎
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: img/logo.png
+  favicon: img/logo.png
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/file-edit-outline
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.footer
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+
+plugins:
+  - git-revision-date-localized:
+      type: datetime
+      enable_creation_date: false
+  - search
+
+nav:
+  - Home: 'index.md'
+  - Clean Architecture Pattern Fundamentals: 'lab1/lab1.md'
+  - Implementing the Ports & Adapters Pattern: 'lab2/lab2.md'
+  - Mappings Between Boundaries: 'lab3/lab3.md'
+  - The Domain Grows: 'lab4/lab4.md'
+  # - Growing Domain Part II: 'lab5/lab5.md'
+  # - Growing Domain Part III: 'lab6/lab6.md'
