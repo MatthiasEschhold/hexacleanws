@@ -50,7 +50,6 @@ plugins:
       type: datetime
       enable_creation_date: false
   - search
-  - pdf-export
 
 nav:
   - Home: 'index.md'
