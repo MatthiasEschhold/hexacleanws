@@ -1,4 +1,4 @@
-# The Domain Grows
+# The Domain Grows Part I
 
 ## Implement the Domain Model
 
@@ -20,11 +20,11 @@ class diagram and the validation rules described in the table below.
     </tr>
     <tr>
         <td>LicensePlate</td>
-        <td>A-ZÖÜÄ]{1,3}-[A-ZÖÜÄ]{1,2} [1-9]{1}[0-9]{1,3}</td>
+        <td><i>A-ZÖÜÄ]{1,3}-[A-ZÖÜÄ]{1,2} [1-9]{1}[0-9]{1,3}</i></td>
     </tr>
     <tr>
         <td>EquipmentCode</td>
-        <td>[A-Z]{2}[0-9]{3}</td>
+        <td><i>[A-Z]{2}[0-9]{3}</i></td>
     </tr>
     <tr>
         <td>Mileage</td>
@@ -136,7 +136,7 @@ Extend the <i>VehicleDbEntity</i> and the <i>VehicleToVehicleDbEntityMapper</i> 
 <summary>Verify 4.4</summary>
 <b>RUN</b> OutputAdapter_Task_4_4
 <br/>
-<b>RUN</b>  all architecture tests
+<b>RUN</b> all architecture tests
 
 </details>
 

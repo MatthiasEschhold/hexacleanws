@@ -1,4 +1,4 @@
-# Lab 5: Growing Domain Part 2
+# The Domain Grows Part II
 
 ## Slicing Use Cases with the Interface Segregation Principle
 
@@ -22,9 +22,9 @@ Applying the _Interface Segregation Principle_
 In origin sense the _Interface Segregation Principle_ says:
 
 ---
-Many client-specific interfaces are better than one general-purpose interface. No clients should be forced to depend on
-methods it does not use. In conclusion, interfaces should be separated into small responsibilities as minimalistic as
-possible.
+Many client-specific interfaces increase readability and understandability compared to one general-purpose interface. 
+No clients should be forced to depend on methods it does not use. In conclusion, interfaces should be separated into small 
+responsibilities as minimalistic as possible.
 
 ![Variants of slicing use cases](../img/usecaseslicing.png)
 
@@ -82,7 +82,7 @@ hard to understand. A good orientation for modularisation inside a _domain modul
 when you do not plan to apply the [Command Query Segregation Principle](https://martinfowler.com/bliki/CQRS.html). 
 But we can create a good foundation for such an evolution.
 
-**One Method per Use Case (Port)***
+**One Method per Use Case (Port)**
 
 ```java
 public interface ReadVehicleByVin {
@@ -141,111 +141,183 @@ new business models. And the system now starts to live, and we can expect an evo
 business model change over time due to changing requirements of the stakeholder as well as technical evolution, which
 creates the need of modernization.
 
-## Task 5.1: Refactor VehicleService and VehicleRepository
+## Refactor VehicleService and VehicleRepository
 
+<details>
+<summary>Coding Task 5.1</summary>
 Now it will be clear, why we named the already implemented use cases the way we did. The next step is to make the
 separation more clear in our current implementation.
 
 Rename the
+<ul>
+   <li> 
+      <i>VehicleService</i> to <i>VehicleQueryService</i>
+   </li>
+   <li>
+      <i>VehicleRepository</i> to <i>VehicleQueryRepository</i> 
+   </li>
+</ul>
 
-* _VehicleService_ to _VehicleQueryService_
-* _VehicleRepository_ to _VehicleQueryRepository_
+</details>
 
-### Verify your Implementation
+<details>
+   <summary>Verify 5.1</summary>
+   <b>RUN</b> OutputAdapter_Task_5_1
+   <br/>
+   <b>RUN</b> DomainRing_Task_5_1
+   
+   <details>
+      <summary>Java & Kotlin</summary>
+      The <i>CleanArchitectureTest</i> located in <i>src/test/java/com/hexaclean/arc/demo/lab/test</i> is a generic test for checking
+      the architecture rules of the clean architecture pattern based on [ArchUnit](https://www.archunit.org/).
+      <br/>
+      <b>RUN</b> CleanArchitectureTest
+      <br/>
+      <b>RUN</b> all (other) architecture tests
+   </details>
+   
+   <details>
+      <summary>C#</summary>
+      <b>RUN</b> all architecture tests
+   </details>
+</details>
 
-**RUN** _OutputAdapter_Task_5_1_
+## Introduce VehicleCommand and VehicleDbCommand
 
-**RUN** _DomainRing_Task_5_1_
+<details>
+   <summary>Coding Task 5.2</summary>
+   In the next step, we want to introduce functionality to create a vehicle and update the vehicle motion data.
+   <ol>
+      <li>
+         Introduce the incoming use case <i>VehicleCommand</i> that provides the methods <i>create</i> and <i>update</i>
+      </li>
+      <li>
+         Introduce the <i>VehicleCommandService</i> and implement <i>VehicleCommand</i>
+      </li>
+      <li>
+         Introduce the outgoing use case <i>VehicleDbCommand</i> that provides the method <i>save</i>
+      </li>
+         Introduce the <i>VehicleCommandRepository</i> and implement the <i>VehicleDbCommand</i> 
+      <li>
+         Extend the <i>VehicleToVehicleDbEntityMapper</i>  with the necessary mappings
+      </li>
+      <li>
+         Extend the <i>VehicleController</i> with REST interface for <i>create</i> and <i>update</i>. 
+         Use the <i>VehicleCommand</i> to connect to the domain.
+      </li>
+      <li>
+         Extend the <i>VehicleToVehicleResourceMapper</i> with the necessary mappings
+      </li>
+      <li>
+         Consider always placing all classes it in the designated packages.
+      </li>
+   </ol>
+   
+   <b>VehicleCommand</b>
 
-### Verify Your Architecture
-
-**Java & Kotlin**
-
-The _CleanArchitectureTest_ located in _src/test/java/com/hexaclean/arc/demo/lab/test_ is a generic test for checking
-the architecture rules of the clean architecture pattern based on [ArchUnit](https://www.archunit.org/).
-
-**RUN**  _CleanArchitectureTest.java_
-
-**RUN**  all (other) architecture tests
-
-**C#**
-
-**RUN**  all architecture tests
-
-## Task 5.2: Introduce VehicleCommand and VehicleDbCommand
-
-In the next step, we want to introduce functionality to create a vehicle and update the vehicle motion data.
-
-1. Introduce the incoming use case _VehicleCommand_ with following methods:
-
-**Java**
+   <details>
+      <summary>Java</summary>
+   
 ```java
-    Vehicle create(Vehicle vehicle);
-    Vehicle update(Vin vin,VehicleMotionData vehicleMotionData);
+Vehicle create(Vehicle vehicle);
+Vehicle update(Vin vin,VehicleMotionData vehicleMotionData);
 ```
-**Kotlin**
+   
+   </details>
+   
+   <details>
+      <summary>Kotlin</summary>
+   
 ```kotlin
-    fun create(vehicle: Vehicle): Vehicle
-    fun update(vin: Vin, vehicleMotionData: VehicleMotionData): Vehicle
+fun create(vehicle: Vehicle): Vehicle
+fun update(vin: Vin, vehicleMotionData: VehicleMotionData): Vehicle
 ```
-**C#**
+   
+   </details>
+   
+   <details>
+      <summary>C#</summary>
+   
 ```java
-    Vehicle Create(Vehicle vehicle);
-    Vehicle Update(Vin vin, VehicleMotionData vehicleMotionData);
+Vehicle Create(Vehicle vehicle);
+Vehicle Update(Vin vin, VehicleMotionData vehicleMotionData);
 ```
-2. Introduce the _VehicleCommandService_ and implement _VehicleCommand_
-3. Introduce the outgoing use case _VehicleDbCommand_ with following method:
+   
+   </details>
 
-**Java**
+   <b>VehicleDbCommand</b>
+   
+   <details>
+      <summary>Java</summary>
+   
 ```java
-    Vehicle save(Vehicle vehicle);
+Vehicle save(Vehicle vehicle);
 ```
-**Kotlin**
+   
+   </details>
+   
+   <details>
+      <summary>Kotlin</summary>
+   
 ```kotlin
-    fun save(vehicle: Vehicle): Vehicle
+fun save(vehicle: Vehicle): Vehicle
 ```
-**C#**
+   
+   </details>
+   
+   <details>
+      <summary>C#</summary>
+   
 ```java
-    Vehicle Save(Vehicle vehicle);
+Vehicle Save(Vehicle vehicle);
+Vehicle Update(Vin vin, VehicleMotionData vehicleMotionData);
 ```
-5. Introduce the _VehicleCommandRepository_ and implement the _VehicleDbCommand_
-6. Extend the _VehicleToVehicleDbEntityMapper_ with the necessary mappings
-7. Extend the _VehicleController_ with REST interface for create and update. Use the _VehicleCommand_ to connect to the
-   domain.
+   
+   </details>
 
-**Java**
+   <b>VehicleController</b>
+
+   <details>
+      <summary>Java</summary>
+   
 ```java
-    VehicleResource create(VehicleResource vehicle);
-    VehicleResource update(String vin,VehicleMotionDataResource vehicleMotionData);
+VehicleResource create(VehicleResource vehicle);
+VehicleResource update(String vin,VehicleMotionDataResource vehicleMotionData);
 ```
-**Kotlin**
+   
+   </details>
+
+   <details>
+      <summary>Kotlin</summary>
+   
+```kotlin
+fun save(vehicle: Vehicle): Vehicle
+```
+   
+   </details>
+
+   <details>
+      <summary>C#</summary>
+   
 ```java
-    fun save(vehicle: Vehicle): Vehicle
+Vehicle Save(Vehicle vehicle);
 ```
-**C#**
-```java
-    Vehicle Save(Vehicle vehicle);
-```
-8. Extend the _VehicleToVehicleResourceMapper_ with the necessary mappings
+   
+   </details>
 
-Consider always placing all classes it in the designated packages according to the structure variant you selected.
+</details>
 
-### Verify Your Architecture
-
-**Java & Kotlin**
-
-**RUN** _CleanArchitectureTest_
-
-**RUN** all architecture tests
-
-**C#**
-
-**RUN** all architecture tests
+<details>
+   <summary>Verify 5.2</summary>
+   <b>RUN</b> CleanArchitectureTest (Java & Kotlin)
+   <br/>
+   <b>RUN</b> all architecture tests
+</details>
 
 ## Rich vs. Anemic Domain Model
 
 Based on the functionality if a vehicle supports a 2G connection, a comparison between a rich or anemic domain model
-will be discussed. Lets imaging the fact if a vehicle supports 2G or not can be derived from the equipment list. If
+will be discussed. Let's imaging the fact if a vehicle supports 2G or not can be derived from the equipment list. If
 there is a 2G modul built-in, then the vehicle supports 2G.
 
 This simplified code snippet should make the scenario more clear:
@@ -253,7 +325,7 @@ This simplified code snippet should make the scenario more clear:
 ```java
 boolean determine2GSupport(List<Equipment> equipmentList){
      for(Equipment equipment:equipmentList){
-         if(equipment.getCode().equals("GS200")){
+         if(equipment.getCode().equals("GS500")){
              return true;
          }
      }
@@ -261,72 +333,101 @@ boolean determine2GSupport(List<Equipment> equipmentList){
 }
 ```
 
-## Task 5.3: Rich Domain Model - Data, Validation and Behaviour
+## Rich Domain Model - Data, Validation and Behaviour
 
+<details>
+   <summary>Coding Task 5.3</summary>
 Currently, our domain model contains data and validation. Now the functionality to determine 2G support will be added as
 additional behaviour. The determination can be done without any additional dependencies. So it is possible to integrate
 the behaviour within the domain model.
+   <ol>
+      <li>Add the boolean property _has2GSupport_ to the _Vehicle_ and _VehicleResource_ class</li>
+      <li>Extend the <i>VehicleToVehicleResourceMapper</i></li>
+      <li>Implement the behaviour for <i>has2GSupport</i></li>
+      <li>Trigger the behaviour during object creation or as soon as the equipment list will changed</li>
+   </ol>
+</details>
 
-1. Add the boolean property _has2GSupport_ to the _Vehicle_ and _VehicleResource_ class
-2. Extend the _VehicleToVehicleResourceMapper_
-4. Implement the behaviour for _has2GSupport_
-5. Trigger the behaviour during object creation or as soon as the equipment list will changed
+<details>
+   <summary>Verify 5.3</summary>
+   <b>RUN</b> DomainRing_Task_5_3 
+   <br/>
+   <b>RUN</b> DomainRing_Task_4_5
+   <br/>
+   <b>RUN</b> CleanArchitectureTest (Java & Kotlin)
+   <br/>
+   <b>RUN</b> all architecture tests
+</details>
 
-### Verify your Implementation
+## Anemic Domain Model - Domain Service Implement the Behaviour
 
-**RUN** _DomainRing_Task_5_3_ 
+<details>
+<summary>Optional Coding Task 5.4</summary>
+<br/>
+Coming soon ...
+<br/>
+</details>
 
-**RUN** _DomainRing_Task_4_5_
+# Hold the Domain Model Clean with Full Mapping Strategy
 
-### Verify Your Architecture
-
-**Java & Kotlin**
-
-**RUN** _CleanArchitectureTest.java_
-
-**RUN** Execute all architecture tests
-
-**C#**
-
-**RUN** all architecture tests
-
-## (Optional) Task 5.4: Hold the Domain Model Clean with Full Mapping Strategy
-
+<details>
+<summary>Optional Coding Task 5.5</summary>
 Let's change the scenario a little. For our domain the equipment list is not relevant. We need this only to
-determine the enriched domain value  _has2GSupport_.
+determine the enriched domain value <i>has2GSupport</i>.
+<br/>
+<br/>
+We are very accurate and want to create an absolutely clean domain model. 
+When our domain does not have to know a equipment list,
+then the <i>Vehicle</i> should not contain it.
+<br/>
+<br/>
+Implement this simplified scenario to get a feeling about decoupling domain logic from infrastructure 
+in more complex scenarios by using the <i>Full Mapping Strategy</i>.
+<br/>
+<br/>
+Look in the package <i>vehicle/domain/dto</i>. The so-called <i>DomainDTO</i> differs from the <i>DTO</i> 
+of an infrastructure component like a <i>DbEntity</i> or <i>Resource</i>. The <i>DomainDTO</i> is used to decouple 
+a external <i>DTO</i> from the domain model, when this is only possible with an additional ring and mapping between 
+all these rings.
 
-We are very accurate and want to create an absolutely clean domain model. When our domain does not have to know a equipment list,
-then the _Vehicle_ should not contain this.
+<ol>
+   <li>
+      Remove the property <i>equipmentList</i> of <i>Vehicle</i> class
+   </li>
+   <li>
+      Remove the domain objects <i>Equipment</i> and <i>EquipmentCode</i>
+   </li>
+   <li>
+      Remove the property <i>equipmentList</i> in <i>VehicleResource</i>
+   </li>
+   <li>
+      Move the method <i>determine2GSupport</i> to <i>VehicleQueryService</i> (or to an dedicated domain service)
+   </li>
+   <li>
+      Adapt the constructor of <i>Vehicle</i>, so that the property <i>has2GSupport</i> is part of it.
+   </li>
+   <li>
+      Change the return value of the use case <i>FetchVehicleMasterData</i>  to <i>VehicleMasterDataDomainDTO</i> 
+   </li>
+   <li>
+      Adapt the mapper <i>VehicleToVehicleDataDtoMapper</i>
+   </li>
+   <li>
+      Adapt the orchestration within the method <i>findByVin</i> of <i>VehicleQueryService</i> 
+   </li>
+   <li>
+      Fix the compilation erros in existing unit tests 
+   </li>
+</ol>
 
-Implement this simplified scenario to get a feeling about decoupling domain logic from infrastructure in more complex scenarios 
-by using the _Full Mapping Strategy_.
+</details>
 
-Look in the package _vehicle/domain/dto_. The so-called _DomainDTO_ differs from the _DTO_ of an infrastructure component
-like a _DbEntity_ or _Resource_. The _DomainDTO_ is used to decouple a external _DTO_ from the domain model, when this is only
-possible with an additional ring and mapping between all these rings.
-
-1. Remove the property _equipmentList_ of _Vehicle_ class
-2. Remove the domain objects _Equipment_ and _EquipmentCode_
-3. Remove the property _equipmentList_ in _VehicleResource_
-4. Move the method _determine2GSupport_ to _VehicleQueryService_ (or to an dedicated domain service)
-5. Adapt the constructor of _Vehicle_, so that the property _has2GSupport_ is part of it.
-6. Change the return value of the use case _FetchVehicleMasterData_ to _VehicleMasterDataDomainDTO_
-7. Adapt the mapper _VehicleToVehicleDataDtoMapper_
-8. Adapt the orchestration within the method _findByVin_ of _VehicleQueryService_
-9. Fix the compilation erros in existing unit tests 
-10. **RUN** the unit tests
-
-### Verify Your Architecture
-
-**Java & Kotlin**
-
-**RUN** _CleanArchitectureTest.java_
-
-**RUN** Execute all architecture tests
-
-**C#**
-
-**RUN** all architecture tests
-
-## Group discussion: Domain Service Approach as a Alternative
+<details>
+   <summary>Verify 5.5</summary>
+   <b>RUN</b> all unit tests
+   <br/>
+   <b>RUN</b> CleanArchitectureTest (Java & Kotlin)
+   <br/>
+   <b>RUN</b> all architecture tests
+</details>
 
