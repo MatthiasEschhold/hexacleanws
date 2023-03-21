@@ -22,4 +22,4 @@ jobs:
           cd documentation
           pip install mkdocs-material
           pip install -r requirements.txt
-          mkdocs gh-deploy --force -s
+          mkdocs gh-deploy --force
