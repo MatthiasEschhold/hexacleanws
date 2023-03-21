@@ -1,6 +1,6 @@
 ---
 site_name: Clean Architecture Training
-site_url: https://pages.git/clean-architecture-training
+site_url: https://matthiaseschhold.github.io/hexacleanws/
 repo_url: https://matthiaseschhold.github.io/hexacleanws/
 repo_name: MatthiasEschhold/hexacleanws
 edit_uri: edit/develop/documentation/docs/
@@ -50,6 +50,7 @@ plugins:
       type: datetime
       enable_creation_date: false
   - search
+  - pdf-export
 
 nav:
   - Home: 'index.md'
