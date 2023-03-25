@@ -1,7 +1,4 @@
-# Vehicle
-Softwarearchitecture Documentation for micorservice dcpm-vehicle based on
-[Mkdocs](https://www.mkDocs.org/) with [Material Theme](https://github.com/squidfunk/mkdocs-material)
-
+# Clean & Hexagonal Architecture Training
 
 ## About MkDocs
 
