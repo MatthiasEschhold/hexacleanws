@@ -10,17 +10,49 @@ The lab description is written with MkDocs.
 
 See [MkDocs Installation Guide](https://www.mkdocs.org/user-guide/installation/).
 
-## Install on Ubuntu
+## Prepare Installation on Ubuntu
 
-1. sudo apt-get install python3 (usually already installed on Ubuntu)
-2. sudo apt-get install pip
-2. pip install mkdocs
-3. pip install mkdocs-material
-4. pip install mkdocs-material-extensions
+### Install Python
 
-## Install on Windows
+```java
+sudo apt-get install python3
+```
 
-Coming soon...
+### Install Pip
+
+```java
+sudo apt-get install pip
+```
+
+Check the installation:
+```java
+pip -V
+```
+
+## Prepare Installation on Windows
+
+### Install Python and Pip
+
+Use the windows installer [available here](https://www.python.org/downloads/release/python-3113/).
+
+Check the installation:
+```java
+pip -V
+```
+
+## Install MkDocs
+
+```java
+pip install mkdocs
+```
+
+```java
+pip install mkdocs-material
+```
+
+```java
+pip install mkdocs-material-extensions
+```
 
 # Publish Lab Description Locally with MkDocs
 
