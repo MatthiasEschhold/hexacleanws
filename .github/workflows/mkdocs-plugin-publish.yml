@@ -12,6 +12,14 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
+      - run: |
+          cd docs
+          pip install mkdocs
+          pip install mkdocs-material
+          pip install mkdocs-material-extensions
+          mkdocs build
+          mkdocs gh-deploy --force --clean --verbose    
+
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
