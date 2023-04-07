@@ -17,4 +17,4 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-material-extensions
           mkdocs build
-          mkdocs gh-deploy --force --clean --verbose
+          mkdocs gh-deploy
