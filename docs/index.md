@@ -28,7 +28,7 @@ tests, help to ensure conformance to the clean architecture pattern.
 
 ### Main-Branch for Lab Description
 
-See [lab description online]() under ... or publish it local like described [here](./mkdocs.md) based
+See [lab description online]() under ... or publish it local like described [here](mkdocs.md) based
 on the main branch.
 
 ## Unit and Architecture Tests
