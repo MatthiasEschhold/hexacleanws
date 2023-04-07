@@ -1,7 +1,7 @@
 ---
-site_name: Clean & Hexagonal Architecture Training
-site_url: https://MatthiasEschhold.github.io/hexacleanws/
-repo_url: https://github.com/MatthiasEschhold/hexacleanws/tree/main
+site_name: Clean Architecture Training
+site_url: https://matthiaseschhold.github.io/hexacleanws/
+repo_url: https://github.com/MatthiasEschhold/hexacleanws
 repo_name: MatthiasEschhold/hexacleanws
 edit_uri: edit/develop/documentation/docs/
 
