@@ -1,0 +1,921 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://matthiaseschhold.github.io/hexacleanws/docs/lab3/lab3/">
+      
+      
+        <link rel="prev" href="../../lab2/lab2/">
+      
+      
+        <link rel="next" href="../../lab4/lab4/">
+      
+      <link rel="icon" href="../../img/logo.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
+    
+    
+      
+        <title>Mappings Between Boundaries - Clean Architecture Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ded33207.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-transfer-objects-between-layers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Clean Architecture Training" class="md-header__button md-logo" aria-label="Clean Architecture Training" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Clean Architecture Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mappings Between Boundaries
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MatthiasEschhold/hexacleanws" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MatthiasEschhold/hexacleanws
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Clean Architecture Training" class="md-nav__button md-logo" aria-label="Clean Architecture Training" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    Clean Architecture Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MatthiasEschhold/hexacleanws" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MatthiasEschhold/hexacleanws
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mkdocs/" class="md-nav__link">
+        Access Lab Description
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/lab1/" class="md-nav__link">
+        Clean Architecture Pattern Fundamentals
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/lab2/" class="md-nav__link">
+        Implementing the Ports & Adapters Pattern
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mappings Between Boundaries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Mappings Between Boundaries
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-transfer-objects-between-layers" class="md-nav__link">
+    Data Transfer Objects Between Layers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-of-mappings" class="md-nav__link">
+    Benefits of Mappings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-adapter" class="md-nav__link">
+    Output Adapter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vehiclerepository-vehicledbentity-and-mapping-between-output-adapter-and-domain" class="md-nav__link">
+    VehicleRepository, VehicleDbEntity and Mapping between Output Adapter and Domain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vehiclecontroller-vehicleresource-and-mapping-between-input-adapter-and-domain" class="md-nav__link">
+    VehicleController, VehicleResource and Mapping between Input Adapter and Domain
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab4/lab4/" class="md-nav__link">
+        The Domain Grows Part I
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab5/lab5/" class="md-nav__link">
+        The Domain Grows Part II
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab6/lab6/" class="md-nav__link">
+        The Domain Grows Part III
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-transfer-objects-between-layers" class="md-nav__link">
+    Data Transfer Objects Between Layers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-of-mappings" class="md-nav__link">
+    Benefits of Mappings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-adapter" class="md-nav__link">
+    Output Adapter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vehiclerepository-vehicledbentity-and-mapping-between-output-adapter-and-domain" class="md-nav__link">
+    VehicleRepository, VehicleDbEntity and Mapping between Output Adapter and Domain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vehiclecontroller-vehicleresource-and-mapping-between-input-adapter-and-domain" class="md-nav__link">
+    VehicleController, VehicleResource and Mapping between Input Adapter and Domain
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  <!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Tags -->
+
+
+<!-- Actions -->
+
+  
+    <a href="https://github.com/MatthiasEschhold/hexacleanws/edit/develop/documentation/docs/docs/lab3/lab3.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/MatthiasEschhold/hexacleanws/raw/develop/documentation/docs/docs/lab3/lab3.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<!--
+  Check whether the content starts with a level 1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+
+<!---->
+<!--<h1>Mappings Between Boundaries</h1>-->
+<!---->
+
+<!-- Page content -->
+<h1 id="mappings-between-boundaries">Mappings Between Boundaries<a class="headerlink" href="#mappings-between-boundaries" title="Permanent link">⚓︎</a></h1>
+<p>Currently, the <em>Vehicle</em> is the model of the application, and it is not separated from infrastructure. 
+In conclusion the idea of ports and adapters is not consequently followed. The missing element for a fully decoupled 
+domain from infrastructure is a <em>mapping between these boundaries</em>.</p>
+<hr />
+<p><strong>Mapping</strong></p>
+<p>Mappings between boundaries describes a transformation of the state of a source entity model to a target entity model.
+The following code snippets shows an example of different entity model, where for example the <em>baumuster</em> of 
+<em>VehicleDto</em> must be mapped on the property <em>modelName</em> of <em>Vehicle</em>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Vehicle</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">modelName</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vin</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">mileage</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VehicleDto</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vehicleModel</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vehicleId</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">mileage</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<p><strong>Pro Mapping</strong></p>
+<ul>
+    <li>
+        If we don't map between layers, we have to use the same model on both layers, which means that the layers will be
+        tightly coupled.
+    </li>
+    <li> Mappings enables use to
+        <ol>
+            <li>reduce the amount of data from external models,</li>
+            <li>implement a model in our domain language, which is easier to understand and to extend</li>
+        </ol>
+    </li>
+</ul>
+
+<hr />
+<p><strong>Contra Mapping</strong></p>
+<ul>
+<li>If we do map between layers, we produce a lot of boilerplate code, which is overkill for many use cases.</li>
+</ul>
+<hr />
+<p>All arguments are true. We have to consider our architecture goals for this decision. Our goals are to create
+a isolated domain, and source code that expresses the domain functionality and language.
+A key element to reach this is mapping. A good balance between boilerplate code and decoupling can be reached by
+simplifying and automating mappings based on the so-called <em>Two-Way Mapping Strategy</em>.</p>
+<h3 id="data-transfer-objects-between-layers">Data Transfer Objects Between Layers<a class="headerlink" href="#data-transfer-objects-between-layers" title="Permanent link">⚓︎</a></h3>
+<p>The class-stereotype <i>Data Transfer Object</i> described data objects provided by infrastructure components. In
+detail <i>Data Transfer Object</i> can be a:</p>
+<ul>
+<li><em>DbEntity</em></li>
+<li><em>Event</em></li>
+<li><em>Resource</em></li>
+<li><em>Response Object</em></li>
+<li>and so on</li>
+</ul>
+<h3 id="benefits-of-mappings">Benefits of Mappings<a class="headerlink" href="#benefits-of-mappings" title="Permanent link">⚓︎</a></h3>
+<hr />
+<p><strong>Stable Domain and Fast Adaption</strong></p>
+<p>Changes in the infrastructure affect not the domain. For example an external service changes its response model
+then the changes affect only the mapper of the adapter. This single point of change enables us to
+adapt fast to infrastructure changes.</p>
+<p>In addition to that, it is possible to reduce test efforts. There are no tests of the domain needed when nothing
+changed. The adapter implementation could be tested in isolation on a pure technical level, which is less complex and
+cost-intensive.</p>
+<hr />
+<p><strong>Evolutionary Design</strong></p>
+<p>Change comes fast and unexpected. But for sure it comes! Domain-related change could arise due to</p>
+<ul>
+<li>changing behaviour,</li>
+<li>new requirements,</li>
+<li>growing business model,</li>
+<li>changing business model,</li>
+<li>new consumers, </li>
+<li>and so on.</li>
+</ul>
+<p>Since we cannot foresee change, we must look ahead and act. On an architectural level, this means that we have to
+apply <strong>architecture</strong> and <strong>design</strong> <strong>principle</strong> that <strong>enables</strong> <strong>change</strong>.</p>
+<p>The idea of ports and adapters is a powerful pattern to support change based on the decoupling of domain and
+infrastructure. Each of them can <strong>grow</strong>, <strong>modernize</strong> and <strong>tested</strong> independently.</p>
+<h2 id="output-adapter">Output Adapter<a class="headerlink" href="#output-adapter" title="Permanent link">⚓︎</a></h2>
+<details>
+    <summary>Coding Task 3.1</summary>
+    <b>Introduce a DbEntity</b>
+    <ol>
+        <li>Create the class <i>VehicleDbEntity</i> and place it in the designated package</li>
+        <li>Ignore framework specific annotations like discussed in the previous lab</li>
+    </ol>
+
+<details>
+<summary>Java</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VehicleDbEntity</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">//id</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">vin</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//getter and setter</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+
+<details>
+<summary>Kotlin</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">VehicleDbEntity</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">//id</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">vin</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>C#</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VehicleDbEntity</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">//id</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">Vin</span><span class="w"> </span><span class="p">{</span><span class="n">get</span><span class="p">;</span><span class="w"> </span><span class="n">set</span><span class="p">;};</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+</details>
+
+</details>
+
+<details>
+    <summary>Verify 3.1</summary>
+    <b>RUN</b> DbEntity_Task_3_1
+    <br/>
+    <b>RUN</b> ArchitectureTest_Task_3_1
+</details>
+
+<h2 id="vehiclerepository-vehicledbentity-and-mapping-between-output-adapter-and-domain">VehicleRepository, VehicleDbEntity and Mapping between Output Adapter and Domain<a class="headerlink" href="#vehiclerepository-vehicledbentity-and-mapping-between-output-adapter-and-domain" title="Permanent link">⚓︎</a></h2>
+<details>
+<summary>Coding Task 3.2</summary>
+
+<b>Extend the VehicleRepository</b>
+<ol>
+<li>
+    Add the private method <i>findVehicleDbEntity</i> to <i>VehicleRepository</i> which returns a hard coded <i>VehicleDbEntity</i>
+</li>
+<li>
+    Use <i>findVehicleDbEntity</i> in the existing public method <i>findVehicleByVin</i> and replace the hard code <i>Vehicle</i>
+    creation
+</li>
+</ol>
+
+<details>
+<summary>Java</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="n">VehicleDbEntity</span><span class="w"> </span><span class="nf">findVehicleDbEntity</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">){</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>Kotlin</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">findVehicleDbEntity</span><span class="p">(</span><span class="n">vin</span><span class="p">:</span><span class="w"> </span><span class="n">Vin</span><span class="p">):</span><span class="w"> </span><span class="n">VehicleDbEntity</span><span class="w"> </span><span class="p">{...}</span>
+</code></pre></div>
+
+</details>
+<details>
+<summary>C#</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="n">VehicleDbEntity</span><span class="w"> </span><span class="nf">FindVehicleDbEntity</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">){</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+</details>
+
+As a result you have a compiltation error.
+
+Remember the responsibilities of the class stereotype repository. 
+Which source code elements do you expected in the class 
+<i>VehicleRepository</i>? 
+
+**Make a list**: [Solution](lab3-repository-solution.md)
+
+<b>Introduce a Mapper</b>
+<ol>
+<li>
+    Introduce the <i>VehicleToVehicleDbEntityMapper</i> with the following method and fix the compilation error.
+</li>
+</ol>
+
+<details>
+<summary>Java</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">mapVehicleDbEntityToVehicle</span><span class="p">(</span><span class="n">VehicleDbEntity</span><span class="w"> </span><span class="n">dbEntity</span><span class="p">){...}</span>
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>Kotlin</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">mapVehicleDbEntityToVehicle</span><span class="p">(</span><span class="n">dbEntity</span><span class="p">:</span><span class="w"> </span><span class="n">VehicleDbEntity</span><span class="p">):</span><span class="w"> </span><span class="n">Vehicle</span><span class="p">{...}</span>
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>C#</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">VehicleRootEntity</span><span class="w"> </span><span class="nf">MapVehicleDbEntityToVehicle</span><span class="p">(</span><span class="n">VehicleDbEntity</span><span class="w"> </span><span class="n">dbEntity</span><span class="p">){...}</span>
+</code></pre></div>
+
+</details>
+
+</details>
+
+<details>
+<summary>Verify 3.2</summary>
+<b>RUN</b> Mapper_Task_3_2
+<br/>
+<b>RUN</b> OutputAdapter_Task_3_2
+<br/>
+<b>RUN</b> ArchitectureTest_Task_3_2
+
+</details>
+
+<h2 id="vehiclecontroller-vehicleresource-and-mapping-between-input-adapter-and-domain">VehicleController, VehicleResource and Mapping between Input Adapter and Domain<a class="headerlink" href="#vehiclecontroller-vehicleresource-and-mapping-between-input-adapter-and-domain" title="Permanent link">⚓︎</a></h2>
+<details>
+<summary>Coding Task 3.3</summary>
+<b>Extend the VehicleController with a Resource</b>
+<br/>
+Change the method <i>read vehicle</i> with the <i>vin</i> as input parameter to
+
+<details>
+<summary>Java</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">VehicleResource</span><span class="w"> </span><span class="nf">readVehicle</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>Kotlin</summary>
+
+<div class="highlight"><pre><span></span><code><span class="n">fun</span><span class="w"> </span><span class="nf">readVehicle</span><span class="p">(</span><span class="n">vin</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">):</span><span class="w"> </span><span class="n">VehicleResource</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>C#</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">VehicleResource</span><span class="w"> </span><span class="nf">ReadVehicle</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+</code></pre></div>
+
+</details>
+
+Now a compilation error occur in the <i>VehicleController</i>.
+
+<ol>
+<li>
+Implement the class <i>VehicleResource</i> and,
+</li>
+<li>
+a mapper class with the name <i>VehicleToVehicleResourceMapper</i> which uses MapStruct
+</li>
+</ol>
+
+<details>
+<summary>Java</summary>
+
+Sources for MapStruct:
+<ul>
+    <li><a href="https://www.baeldung.com/mapstruct">MapStruct Basics</a></li>
+    <li><a href="https://www.baeldung.com/mapstruct-custom-mapper">Custom Mapper with MapStruct</a></li>
+    <li><a href="https://mapstruct.org/documentation/stable/reference/html/">MapStruct Reference Guide Version 1.5.3</a></li>
+    <li><a href="https://mapstruct.org/community/other-resources/">Other sources</a></li>
+</ul>
+</details>
+
+<details>
+<summary>C#</summary>
+
+Sources for AutoMapper:
+<ul>
+<li><a href="https://dotnettutorials.net/lesson/automapper-in-c-sharp/">AutoMapper Tutorial</a></li>
+<li> <a href="https://docs.automapper.org/en/stable/index.html/">AutoMapper Documentation</a></li>
+</ul>
+</details>
+</details>
+
+<details>
+<summary>Verify 3.3</summary>
+<b>RUN</b> InputAdapter_Task_3_3
+<br/>
+<b>RUN</b> ArchitectureTest_Task_3_3
+</details>
+
+<details>
+<summary>Addtional Verification for Java</summary>
+<b>RUN</b> Mapper_Task_3_3
+</details>
+
+<!-- Source file information -->
+
+
+<!-- Was this page helpful? -->
+
+
+
+
+<!-- Comment system -->
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../lab2/lab2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Implementing the Ports &amp; Adapters Pattern" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Implementing the Ports & Adapters Pattern
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../lab4/lab4/" class="md-footer__link md-footer__link--next" aria-label="Next: The Domain Grows Part I" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                The Domain Grows Part I
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.51198bba.min.js"></script>
+      
+    
+  </body>
+</html>

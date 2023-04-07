@@ -1,0 +1,1028 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://matthiaseschhold.github.io/hexacleanws/docs/lab5/lab5/">
+      
+      
+        <link rel="prev" href="../../lab4/lab4/">
+      
+      
+        <link rel="next" href="../../lab6/lab6/">
+      
+      <link rel="icon" href="../../img/logo.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
+    
+    
+      
+        <title>The Domain Grows Part II - Clean Architecture Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ded33207.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#slicing-use-cases-with-the-interface-segregation-principle" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Clean Architecture Training" class="md-header__button md-logo" aria-label="Clean Architecture Training" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Clean Architecture Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Domain Grows Part II
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MatthiasEschhold/hexacleanws" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MatthiasEschhold/hexacleanws
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Clean Architecture Training" class="md-nav__button md-logo" aria-label="Clean Architecture Training" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    Clean Architecture Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MatthiasEschhold/hexacleanws" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MatthiasEschhold/hexacleanws
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mkdocs/" class="md-nav__link">
+        Access Lab Description
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/lab1/" class="md-nav__link">
+        Clean Architecture Pattern Fundamentals
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/lab2/" class="md-nav__link">
+        Implementing the Ports & Adapters Pattern
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab3/lab3/" class="md-nav__link">
+        Mappings Between Boundaries
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab4/lab4/" class="md-nav__link">
+        The Domain Grows Part I
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          The Domain Grows Part II
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        The Domain Grows Part II
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#slicing-use-cases-with-the-interface-segregation-principle" class="md-nav__link">
+    Slicing Use Cases with the Interface Segregation Principle
+  </a>
+  
+    <nav class="md-nav" aria-label="Slicing Use Cases with the Interface Segregation Principle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slicing-use-cases-in-practice" class="md-nav__link">
+    Slicing Use Cases in Practice
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refactor-vehicleservice-and-vehiclerepository" class="md-nav__link">
+    Refactor VehicleService and VehicleRepository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduce-vehiclecommand-and-vehicledbcommand" class="md-nav__link">
+    Introduce VehicleCommand and VehicleDbCommand
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rich-vs-anemic-domain-model" class="md-nav__link">
+    Rich vs. Anemic Domain Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rich-domain-model-data-validation-and-behaviour" class="md-nav__link">
+    Rich Domain Model - Data, Validation and Behaviour
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anemic-domain-model-domain-service-implement-the-behaviour" class="md-nav__link">
+    Anemic Domain Model - Domain Service Implement the Behaviour
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab6/lab6/" class="md-nav__link">
+        The Domain Grows Part III
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#slicing-use-cases-with-the-interface-segregation-principle" class="md-nav__link">
+    Slicing Use Cases with the Interface Segregation Principle
+  </a>
+  
+    <nav class="md-nav" aria-label="Slicing Use Cases with the Interface Segregation Principle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slicing-use-cases-in-practice" class="md-nav__link">
+    Slicing Use Cases in Practice
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refactor-vehicleservice-and-vehiclerepository" class="md-nav__link">
+    Refactor VehicleService and VehicleRepository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduce-vehiclecommand-and-vehicledbcommand" class="md-nav__link">
+    Introduce VehicleCommand and VehicleDbCommand
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rich-vs-anemic-domain-model" class="md-nav__link">
+    Rich vs. Anemic Domain Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rich-domain-model-data-validation-and-behaviour" class="md-nav__link">
+    Rich Domain Model - Data, Validation and Behaviour
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anemic-domain-model-domain-service-implement-the-behaviour" class="md-nav__link">
+    Anemic Domain Model - Domain Service Implement the Behaviour
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  <!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Tags -->
+
+
+<!-- Actions -->
+
+  
+    <a href="https://github.com/MatthiasEschhold/hexacleanws/edit/develop/documentation/docs/docs/lab5/lab5.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/MatthiasEschhold/hexacleanws/raw/develop/documentation/docs/docs/lab5/lab5.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<!--
+  Check whether the content starts with a level 1 headline. If it doesn't, the
+  page title (or respectively site name) is used as the main headline.
+-->
+
+<!---->
+<!--<h1>The Domain Grows Part II</h1>-->
+<!---->
+
+<!-- Page content -->
+<h1 id="the-domain-grows-part-ii">The Domain Grows Part II<a class="headerlink" href="#the-domain-grows-part-ii" title="Permanent link">⚓︎</a></h1>
+<h2 id="slicing-use-cases-with-the-interface-segregation-principle">Slicing Use Cases with the Interface Segregation Principle<a class="headerlink" href="#slicing-use-cases-with-the-interface-segregation-principle" title="Permanent link">⚓︎</a></h2>
+<p><em>Robert C. Martin</em> points out in his book <em>Clean Architecture</em> that</p>
+<blockquote cite="https://example.com/optional-reference">
+depending on something that carries baggage that
+you don't need can cause you trouble that you didn't expect!
+</blockquote>
+
+<p>The <em>Interface Segregation Principle</em> provides an answer to this problem. It states that broad 
+interfaces should be split into specific ones so that clients only know the methods they need.</p>
+<p>Applying the <em>Interface Segregation Principle</em></p>
+<ul>
+<li><strong>removes unnecessary dependencies</strong> to methods the consumer doesn't need,</li>
+<li>makes the existing <strong>dependencies more visible</strong>,</li>
+<li><strong>prevents</strong> potential trouble based on <strong>side effects</strong> and,</li>
+<li>enables <strong>extendibility</strong> and <strong>flexibility</strong> </li>
+</ul>
+<p>In origin sense the <em>Interface Segregation Principle</em> says:</p>
+<hr />
+<p>Many client-specific interfaces increase readability and understandability compared to one general-purpose interface. 
+No clients should be forced to depend on methods it does not use. In conclusion, interfaces should be separated into small 
+responsibilities as minimalistic as possible.</p>
+<p><img alt="Variants of slicing use cases" src="../../img/usecaseslicing.png" /></p>
+<p>Personally I do not use the option <em>Root Entity</em>. As a default I use the option <em>Command &amp; Query</em>. When different
+consumer exists and there are difference between their needs, then I recommend using the option <em>One Method Per
+Use Case (Port)</em>. Also referring to the package structure variants, there is a <em>separation of incoming and outgoing use
+cases</em>, which is recommended to <em>apply</em> as <em>standard design principle</em>.</p>
+<p>Following code examples shows different variants of slicing use cases.</p>
+<p><strong>Use Cases by Root Entity</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">VehicleUseCase</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">readByVin</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">readByLicensePlate</span><span class="p">(</span><span class="n">LicensePlate</span><span class="w"> </span><span class="n">licensePlate</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleMotionData</span><span class="w"> </span><span class="n">vehicleMotionData</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Use Case by Separating Command and Query</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">VehicleQuery</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">readByVin</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">readByLicensePlate</span><span class="p">(</span><span class="n">LicensePlate</span><span class="w"> </span><span class="n">licensePlate</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">VehicleCommand</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleMotionData</span><span class="w"> </span><span class="n">vehicleMotionData</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A separation in <em>Command and Query</em> helps to prevent, that classes grow into complex and big units of code that are
+hard to understand. A good orientation for modularisation inside a <em>domain module</em> can be found in <em>Command and Query</em>, even
+when you do not plan to apply the <a href="https://martinfowler.com/bliki/CQRS.html">Command Query Segregation Principle</a>. 
+But we can create a good foundation for such an evolution.</p>
+<p><strong>One Method per Use Case (Port)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ReadVehicleByVin</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ReadVehicleByLicensePlate</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="n">LicensePlate</span><span class="w"> </span><span class="n">licensePlate</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CreateVehicle</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">readByVin</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">readByLicensePlate</span><span class="p">(</span><span class="n">LicensePlate</span><span class="w"> </span><span class="n">licensePlate</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">UpdateVehicle</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleMotionData</span><span class="w"> </span><span class="n">vehicleMotionData</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">DeleteVehicle</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vib</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Even when the variant <em>One Method per Use Case</em> is not typical Java, slicing use cases this way reduces coupling
+between clients. In conclusion, the overall coupling between components of the software system will be kept low.
+Coupling rises quickly and unavoidable. Due to this, we should avoid it every time when possible, especially in
+fast-growing software systems for complex business domains.</p>
+<p>Small sliced use cases allow assembling these use cases to a higher composition of functionality. Based on this,
+functionality can be extended fast for new or changing business processes or user group specific requirements.</p>
+<h3 id="slicing-use-cases-in-practice">Slicing Use Cases in Practice<a class="headerlink" href="#slicing-use-cases-in-practice" title="Permanent link">⚓︎</a></h3>
+<p>There is no right way by default. It depends on complexity and specific requirements of the project. 
+In practice a reasonable combination of these variants is may the best way to find a good balance between flexibility and 
+simplicity in the architecture in the long term.</p>
+<p>Let's have a look on following functional requirements. As we already know, we have the mission to build a great garage
+management that is maintainable, extendable and flexible. We want to modernize existing business processes and establish
+new business models. And the system now starts to live, and we can expect an evolution over the years because the
+business model change over time due to changing requirements of the stakeholder as well as technical evolution, which
+creates the need of modernization.</p>
+<h2 id="refactor-vehicleservice-and-vehiclerepository">Refactor VehicleService and VehicleRepository<a class="headerlink" href="#refactor-vehicleservice-and-vehiclerepository" title="Permanent link">⚓︎</a></h2>
+<details>
+<summary>Coding Task 5.1</summary>
+Now it will be clear, why we named the already implemented use cases the way we did. The next step is to make the
+separation more clear in our current implementation.
+
+Rename the
+<ul>
+   <li> 
+      <i>VehicleService</i> to <i>VehicleQueryService</i>
+   </li>
+   <li>
+      <i>VehicleRepository</i> to <i>VehicleQueryRepository</i> 
+   </li>
+</ul>
+
+</details>
+
+<details>
+   <summary>Verify 5.1</summary>
+   <b>RUN</b> OutputAdapter_Task_5_1
+   <br/>
+   <b>RUN</b> DomainRing_Task_5_1
+
+   <details>
+      <summary>Java & Kotlin</summary>
+      The <i>CleanArchitectureTest</i> located in <i>src/test/java/com/hexaclean/arc/demo/lab/test</i> is a generic test for checking
+      the architecture rules of the clean architecture pattern based on [ArchUnit](https://www.archunit.org/).
+      <br/>
+      <b>RUN</b> CleanArchitectureTest
+      <br/>
+      <b>RUN</b> all (other) architecture tests
+   </details>
+
+   <details>
+      <summary>C#</summary>
+      <b>RUN</b> all architecture tests
+   </details>
+</details>
+
+<h2 id="introduce-vehiclecommand-and-vehicledbcommand">Introduce VehicleCommand and VehicleDbCommand<a class="headerlink" href="#introduce-vehiclecommand-and-vehicledbcommand" title="Permanent link">⚓︎</a></h2>
+<details>
+   <summary>Coding Task 5.2</summary>
+   In the next step, we want to introduce functionality to create a vehicle and update the vehicle motion data.
+   <ol>
+      <li>
+         Introduce the incoming use case <i>VehicleCommand</i> that provides the methods <i>create</i> and <i>update</i>
+      </li>
+      <li>
+         Introduce the <i>VehicleCommandService</i> and implement <i>VehicleCommand</i>
+      </li>
+      <li>
+         Introduce the outgoing use case <i>VehicleDbCommand</i> that provides the method <i>save</i>
+      </li>
+         Introduce the <i>VehicleCommandRepository</i> and implement the <i>VehicleDbCommand</i> 
+      <li>
+         Extend the <i>VehicleToVehicleDbEntityMapper</i>  with the necessary mappings
+      </li>
+      <li>
+         Extend the <i>VehicleController</i> with REST interface for <i>create</i> and <i>update</i>. 
+         Use the <i>VehicleCommand</i> to connect to the domain.
+      </li>
+      <li>
+         Extend the <i>VehicleToVehicleResourceMapper</i> with the necessary mappings
+      </li>
+      <li>
+         Consider always placing all classes it in the designated packages.
+      </li>
+   </ol>
+
+   <b>VehicleCommand</b>
+
+   <details>
+      <summary>Java</summary>
+
+<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+<span class="n">Vehicle</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">,</span><span class="n">VehicleMotionData</span><span class="w"> </span><span class="n">vehicleMotionData</span><span class="p">);</span>
+</code></pre></div>
+
+   </details>
+
+   <details>
+      <summary>Kotlin</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">vehicle</span><span class="p">:</span><span class="w"> </span><span class="n">Vehicle</span><span class="p">):</span><span class="w"> </span><span class="n">Vehicle</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">vin</span><span class="p">:</span><span class="w"> </span><span class="n">Vin</span><span class="p">,</span><span class="w"> </span><span class="n">vehicleMotionData</span><span class="p">:</span><span class="w"> </span><span class="n">VehicleMotionData</span><span class="p">):</span><span class="w"> </span><span class="n">Vehicle</span>
+</code></pre></div>
+
+   </details>
+
+   <details>
+      <summary>C#</summary>
+
+<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">Create</span><span class="p">(</span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+<span class="n">Vehicle</span><span class="w"> </span><span class="nf">Update</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleMotionData</span><span class="w"> </span><span class="n">vehicleMotionData</span><span class="p">);</span>
+</code></pre></div>
+
+   </details>
+
+   <b>VehicleDbCommand</b>
+
+   <details>
+      <summary>Java</summary>
+
+<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+</code></pre></div>
+
+   </details>
+
+   <details>
+      <summary>Kotlin</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">vehicle</span><span class="p">:</span><span class="w"> </span><span class="n">Vehicle</span><span class="p">):</span><span class="w"> </span><span class="n">Vehicle</span>
+</code></pre></div>
+
+   </details>
+
+   <details>
+      <summary>C#</summary>
+
+<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">Save</span><span class="p">(</span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+<span class="n">Vehicle</span><span class="w"> </span><span class="nf">Update</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">,</span><span class="w"> </span><span class="n">VehicleMotionData</span><span class="w"> </span><span class="n">vehicleMotionData</span><span class="p">);</span>
+</code></pre></div>
+
+   </details>
+
+   <b>VehicleController</b>
+
+   <details>
+      <summary>Java</summary>
+
+<div class="highlight"><pre><span></span><code><span class="n">VehicleResource</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="n">VehicleResource</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+<span class="n">VehicleResource</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">vin</span><span class="p">,</span><span class="n">VehicleMotionDataResource</span><span class="w"> </span><span class="n">vehicleMotionData</span><span class="p">);</span>
+</code></pre></div>
+
+   </details>
+
+   <details>
+      <summary>Kotlin</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">vehicle</span><span class="p">:</span><span class="w"> </span><span class="n">Vehicle</span><span class="p">):</span><span class="w"> </span><span class="n">Vehicle</span>
+</code></pre></div>
+
+   </details>
+
+   <details>
+      <summary>C#</summary>
+
+<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">Save</span><span class="p">(</span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+</code></pre></div>
+
+   </details>
+
+</details>
+
+<details>
+   <summary>Verify 5.2</summary>
+   <b>RUN</b> CleanArchitectureTest (Java & Kotlin)
+   <br/>
+   <b>RUN</b> all architecture tests
+</details>
+
+<h2 id="rich-vs-anemic-domain-model">Rich vs. Anemic Domain Model<a class="headerlink" href="#rich-vs-anemic-domain-model" title="Permanent link">⚓︎</a></h2>
+<p>Based on the functionality if a vehicle supports a 2G connection, a comparison between a rich or anemic domain model
+will be discussed. Let's imaging the fact if a vehicle supports 2G or not can be derived from the equipment list. If
+there is a 2G modul built-in, then the vehicle supports 2G.</p>
+<p>This simplified code snippet should make the scenario more clear:</p>
+<div class="highlight"><pre><span></span><code><span class="kt">boolean</span><span class="w"> </span><span class="nf">determine2GSupport</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Equipment</span><span class="o">&gt;</span><span class="w"> </span><span class="n">equipmentList</span><span class="p">){</span>
+<span class="w">     </span><span class="k">for</span><span class="p">(</span><span class="n">Equipment</span><span class="w"> </span><span class="n">equipment</span><span class="p">:</span><span class="n">equipmentList</span><span class="p">){</span>
+<span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">equipment</span><span class="p">.</span><span class="na">getCode</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;GS500&quot;</span><span class="p">)){</span>
+<span class="w">             </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="rich-domain-model-data-validation-and-behaviour">Rich Domain Model - Data, Validation and Behaviour<a class="headerlink" href="#rich-domain-model-data-validation-and-behaviour" title="Permanent link">⚓︎</a></h2>
+<details>
+   <summary>Coding Task 5.3</summary>
+Currently, our domain model contains data and validation. Now the functionality to determine 2G support will be added as
+additional behaviour. The determination can be done without any additional dependencies. So it is possible to integrate
+the behaviour within the domain model.
+   <ol>
+      <li>Add the boolean property _has2GSupport_ to the _Vehicle_ and _VehicleResource_ class</li>
+      <li>Extend the <i>VehicleToVehicleResourceMapper</i></li>
+      <li>Implement the behaviour for <i>has2GSupport</i></li>
+      <li>Trigger the behaviour during object creation or as soon as the equipment list will changed</li>
+   </ol>
+</details>
+
+<details>
+   <summary>Verify 5.3</summary>
+   <b>RUN</b> DomainRing_Task_5_3 
+   <br/>
+   <b>RUN</b> DomainRing_Task_4_5
+   <br/>
+   <b>RUN</b> CleanArchitectureTest (Java & Kotlin)
+   <br/>
+   <b>RUN</b> all architecture tests
+</details>
+
+<h2 id="anemic-domain-model-domain-service-implement-the-behaviour">Anemic Domain Model - Domain Service Implement the Behaviour<a class="headerlink" href="#anemic-domain-model-domain-service-implement-the-behaviour" title="Permanent link">⚓︎</a></h2>
+<details>
+<summary>Optional Coding Task 5.4</summary>
+<br/>
+Coming soon ...
+<br/>
+</details>
+
+<h1 id="hold-the-domain-model-clean-with-full-mapping-strategy">Hold the Domain Model Clean with Full Mapping Strategy<a class="headerlink" href="#hold-the-domain-model-clean-with-full-mapping-strategy" title="Permanent link">⚓︎</a></h1>
+<details>
+<summary>Optional Coding Task 5.5</summary>
+Let's change the scenario a little. For our domain the equipment list is not relevant. We need this only to
+determine the enriched domain value <i>has2GSupport</i>.
+<br/>
+<br/>
+We are very accurate and want to create an absolutely clean domain model. 
+When our domain does not have to know a equipment list,
+then the <i>Vehicle</i> should not contain it.
+<br/>
+<br/>
+Implement this simplified scenario to get a feeling about decoupling domain logic from infrastructure 
+in more complex scenarios by using the <i>Full Mapping Strategy</i>.
+<br/>
+<br/>
+Look in the package <i>vehicle/domain/dto</i>. The so-called <i>DomainDTO</i> differs from the <i>DTO</i> 
+of an infrastructure component like a <i>DbEntity</i> or <i>Resource</i>. The <i>DomainDTO</i> is used to decouple 
+a external <i>DTO</i> from the domain model, when this is only possible with an additional ring and mapping between 
+all these rings.
+
+<ol>
+   <li>
+      Remove the property <i>equipmentList</i> of <i>Vehicle</i> class
+   </li>
+   <li>
+      Remove the domain objects <i>Equipment</i> and <i>EquipmentCode</i>
+   </li>
+   <li>
+      Remove the property <i>equipmentList</i> in <i>VehicleResource</i>
+   </li>
+   <li>
+      Move the method <i>determine2GSupport</i> to <i>VehicleQueryService</i> (or to an dedicated domain service)
+   </li>
+   <li>
+      Adapt the constructor of <i>Vehicle</i>, so that the property <i>has2GSupport</i> is part of it.
+   </li>
+   <li>
+      Change the return value of the use case <i>FetchVehicleMasterData</i>  to <i>VehicleMasterDataDomainDTO</i> 
+   </li>
+   <li>
+      Adapt the mapper <i>VehicleToVehicleDataDtoMapper</i>
+   </li>
+   <li>
+      Adapt the orchestration within the method <i>findByVin</i> of <i>VehicleQueryService</i> 
+   </li>
+   <li>
+      Fix the compilation erros in existing unit tests 
+   </li>
+</ol>
+
+</details>
+
+<details>
+   <summary>Verify 5.5</summary>
+   <b>RUN</b> all unit tests
+   <br/>
+   <b>RUN</b> CleanArchitectureTest (Java & Kotlin)
+   <br/>
+   <b>RUN</b> all architecture tests
+</details>
+
+<!-- Source file information -->
+
+
+<!-- Was this page helpful? -->
+
+
+
+
+<!-- Comment system -->
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../lab4/lab4/" class="md-footer__link md-footer__link--prev" aria-label="Previous: The Domain Grows Part I" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                The Domain Grows Part I
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../lab6/lab6/" class="md-footer__link md-footer__link--next" aria-label="Next: The Domain Grows Part III" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                The Domain Grows Part III
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.51198bba.min.js"></script>
+      
+    
+  </body>
+</html>
