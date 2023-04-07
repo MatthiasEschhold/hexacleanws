@@ -12,7 +12,6 @@ jobs:
         with:
           python-version: 3.x
       - run: |
-          cd docs
           pip install mkdocs
           pip install mkdocs-material
           pip install mkdocs-material-extensions
