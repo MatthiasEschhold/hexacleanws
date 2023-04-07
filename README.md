@@ -1,8 +1,8 @@
 # Hexagonal and Clean Architecture Training
 
 This repository contains a guided training for the
-[Clean Architecture Pattern](https://matthiaseschhold.github.io/hexacleanws/)
-and Hexagonal Architecture Pattern (_WIP_).
+[clean](https://matthiaseschhold.github.io/hexacleanws/)
+and [hexagonal]() architecture pattern.
 
 | Links                                               | Content |
 |-----------------------------------------------------|---------|
