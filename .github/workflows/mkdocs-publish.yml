@@ -17,4 +17,4 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-material-extensions
           mkdocs build
-          mkdocs gh-deploy
+          mkdocs gh-deploy --site_dir docs/site/
