@@ -1,4 +1,4 @@
-/*package com.hexaclean.arc.demo.app.lab.one;
+package com.hexaclean.arc.demo.app.lab.one;
 
 import com.hexaclean.arc.demo.app.lab.BaseExerciseTest;
 import com.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DomainRing_Task_1_2 extends BaseExerciseTest {
+class DomainRing_Task_1_2 extends BaseExerciseTest {
 
     @Test
     void vehicle_service_should_return_a_valid_vehicle() {
@@ -17,4 +17,4 @@ public class DomainRing_Task_1_2 extends BaseExerciseTest {
         assertThat(vehicle).isEqualTo(new Vehicle(new Vin(VIN)));
     }
 
-}*/
+}

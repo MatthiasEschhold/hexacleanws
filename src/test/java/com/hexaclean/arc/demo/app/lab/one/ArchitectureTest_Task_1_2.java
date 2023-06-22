@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
-public class ArchitectureTest_Task_1_2 extends BaseArchUnitExerciseTest {
+class ArchitectureTest_Task_1_2 extends BaseArchUnitExerciseTest {
 
     @Test
     @DisplayName("The VehicleService should reside in a package called 'domain' or 'domain.service' and should only depend on classes that reside in a package called 'domain' and 'domain.model'")
