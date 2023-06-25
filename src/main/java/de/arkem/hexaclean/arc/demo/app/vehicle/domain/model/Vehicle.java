@@ -1,6 +1,6 @@
 package de.arkem.hexaclean.arc.demo.app.vehicle.domain.model;
 
-import de.arkem.hexaclean.arc.demo.app.common.Default;
+import de.arkem.hexaclean.arc.demo.common.Default;
 
 import java.util.List;
 import java.util.Objects;
