@@ -1,16 +1,11 @@
 package de.arkem.hexaclean.arc.demo.app.lab;
 
-import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.in.resource.EquipmentResource;
+import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.in.resource.VehicleMotionDataResource;
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.in.resource.VehicleResource;
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db.VehicleDbEntity;
-import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db.VehicleRepository;
+import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db.VehicleQueryRepository;
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db.VehicleToVehicleDbEntityMapper;
-import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.masterdata.dto.EquipmentDto;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.*;
 
@@ -27,8 +22,8 @@ public class SimpleTestObjectFactory {
     }
 
     // comment in for lab 3.2
-    public static VehicleRepository createVehicleRepository() {
-        return new VehicleRepository(new VehicleToVehicleDbEntityMapper());
+    public static VehicleQueryRepository createVehicleRepository() {
+        return new VehicleQueryRepository(new VehicleToVehicleDbEntityMapper());
     }
 
     //comment in for lab 3.3
@@ -43,6 +38,13 @@ public class SimpleTestObjectFactory {
         //return null;
         return new VehicleMotionData(new LicensePlate(LICENSE_PLATE_TEST_VALUE),
                 new Mileage(MILEAGE_TEST_VALUE));
+    }
+
+    public static VehicleMotionDataResource createExpectedVehicleMotionDataResource() {
+        VehicleMotionDataResource resource = new VehicleMotionDataResource();
+        resource.setLicensePlate(LICENSE_PLATE_TEST_VALUE);
+        resource.setMileage(MILEAGE_TEST_VALUE);
+        return resource;
     }
 
 /*
@@ -81,21 +83,11 @@ public class SimpleTestObjectFactory {
 
 
 
-    protected List<Equipment> createEquipmentListHas2G() {
-        List<Equipment> equipmentList = createEquipmentListDto().stream().map(e -> new Equipment(new EquipmentCode(e.getCode()), e.getLabel()))
-                .collect(Collectors.toList());
-        equipmentList.add(new Equipment(new EquipmentCode("GS200"), "2GSupportAdapter"));
-        return equipmentList;
-    }
 
 
 
-    protected VehicleMotionDataResource createExpectedVehicleMotionDataResource() {
-        VehicleMotionDataResource resource = new VehicleMotionDataResource();
-        resource.setLicensePlate(LICENSE_PLATE_TEST_VALUE);
-        resource.setMileage(MILEAGE_TEST_VALUE);
-        return resource;
-    }
+
+
 
     protected VehicleMasterData createExpectedVehicleMasterData() {
         return new VehicleMasterData(
@@ -103,11 +95,7 @@ public class SimpleTestObjectFactory {
                 new SerialNumber(SERIAL_NUMBER_TEST_VALUE), new MileageUnit(MileageUnitValue.KM), createEquipmentList());
     }
 
-    protected VehicleMasterData createExpectedVehicleMasterDataHas2G() {
-        return new VehicleMasterData(
-                new VehicleModel(VEHICLE_MODEL_DESCRIPTION_TEST_VALUE, VEHICLE_MODEL_TYPE_TEST_VALUE),
-                new SerialNumber(SERIAL_NUMBER_TEST_VALUE), new MileageUnit(MileageUnitValue.KM), createEquipmentListHas2G());
-    }
+
 
 
     */

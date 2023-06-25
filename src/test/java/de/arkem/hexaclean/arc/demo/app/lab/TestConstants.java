@@ -8,7 +8,7 @@ public class TestConstants {
     public static final String JAVA_LANG = "..java.lang..";
     public static final String ROOT_ENTITY_UNDER_TEST = "Vehicle";
     public static final String DB_ENTITY_UNDER_TEST = "VehicleDbEntity";
-    public static final String SERVICE_UNDER_TEST = "VehicleService";
+    public static final String SERVICE_UNDER_TEST = "VehicleQueryService";
     public static final String VALUE_OBJECT_UNDER_TEST = "Vin";
     public static final String JAVA_UTIL = "..java.util..";
     public static final String ORG = "..org..";
@@ -20,7 +20,7 @@ public class TestConstants {
     public static final String USECASE_OUT = "..usecase.out..";
     public static final String USECASE_OUT_QUERY_UNDER_TEST = "VehicleDbQuery";
     public static final String USECASE_IN_QUERY_UNDER_TEST = "VehicleQuery";
-    public static final String REPOSITORY_UNDER_TEST = "VehicleRepository";
+    public static final String REPOSITORY_UNDER_TEST = "VehicleQueryRepository";
     public static final String ADAPTER_OUT = "..adapter.out..";
     public static final String CONTROLLER_UNDER_TEST = "VehicleController";
     public static final String LICENSE_PLATE_TEST_VALUE = "ES-EM 385";
@@ -31,6 +31,8 @@ public class TestConstants {
     public static final String SERIAL_NUMBER_TEST_VALUE = "0123456789";
     public static final String VEHICLE_DOMAIN = "..vehicle.domain..";
     public static final String VEHICLE_DOMAIN_MODEL = "..vehicle.domain.model..";
+
+    public static final String VEHICLE_DOMAIN_SERVICE = "..vehicle.domain.service..";
     public static final String VEHICLE_ADAPTER = "..vehicle.adapter..";
     public static final String VEHICLE_ADAPTER_OUT = "..vehicle.adapter.out..";
     public static final String VEHICLE_USECASE = "..vehicle.usecase..";

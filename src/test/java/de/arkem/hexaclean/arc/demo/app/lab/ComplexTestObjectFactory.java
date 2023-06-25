@@ -11,7 +11,22 @@ import java.util.stream.Collectors;
 
 import static de.arkem.hexaclean.arc.demo.app.lab.SimpleTestObjectFactory.createExpectedVehicleMotionData;
 import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.*;
+
 public class ComplexTestObjectFactory {
+
+    public static VehicleMasterData createExpectedVehicleMasterDataHas5G() {
+        return new VehicleMasterData(
+                createEquipmentListHas5G(),
+                new VehicleModel(VEHICLE_MODEL_DESCRIPTION_TEST_VALUE, VEHICLE_MODEL_TYPE_TEST_VALUE),
+                new SerialNumber(SERIAL_NUMBER_TEST_VALUE), new MileageUnit(MileageUnitValue.KM));
+    }
+
+    private static List<Equipment> createEquipmentListHas5G() {
+        List<Equipment> equipmentList = createEquipmentListDto().stream().map(e -> new Equipment(new EquipmentCode(e.getCode()), e.getLabel()))
+                .collect(Collectors.toList());
+        equipmentList.add(new Equipment(new EquipmentCode("GS200"), "5GSupportAdapter"));
+        return equipmentList;
+    }
 
     public static VehicleResource createExpectedVehicleResource() {
         VehicleResource resource = new VehicleResource();

@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.four;
+package de.arkem.hexaclean.arc.demo.app.lab.five;
 
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db.VehicleQueryRepository;
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db.VehicleToVehicleDbEntityMapper;
@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import static de.arkem.hexaclean.arc.demo.app.lab.ComplexTestObjectFactory.createExpectedVehicle;
 import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.VIN;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
-class OutputAdapter_Task_4_4 {
+public class OutputAdapter_Task_5_1 {
+
     @Test
     @DisplayName("The VehicleRepository should return a valid Vehicle")
     void vehicle_and_vin_should_be_created_successful() {
@@ -29,4 +30,5 @@ class OutputAdapter_Task_4_4 {
     private VehicleQueryRepository createVehicleRepository() {
         return new VehicleQueryRepository(new VehicleToVehicleDbEntityMapper());
     }
+
 }

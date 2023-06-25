@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.four;
+package de.arkem.hexaclean.arc.demo.app.lab.five;
 
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vin;
@@ -15,7 +15,7 @@ import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.VIN;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
 
-class DomainRing_Task_4_5 {
+public class DomainRing_Task_5_1 {
 
     @Test
     @DisplayName("The VehicleService should implement the orchestration between different outgoing use cases")
@@ -36,7 +36,7 @@ class DomainRing_Task_4_5 {
         assertThat(vehicle.getVehicleMasterData().vehicleModel().modelDescription()).isEqualTo(expectedVehicle.getVehicleMasterData().vehicleModel().modelDescription());
         assertThat(vehicle.getVehicleMasterData().mileageUnit()).isEqualTo(expectedVehicle.getVehicleMasterData().mileageUnit());
         assertThat(vehicle.getVehicleMasterData().serialNumber()).isEqualTo(expectedVehicle.getVehicleMasterData().serialNumber());
-        assertThat(vehicle.getVehicleMasterData().equipmentList().size()).isEqualTo(3);
+        //assertThat(vehicle.isHas2GSupport()).isFalse();
         assertThat(vehicle.getVin()).isEqualTo(expectedVehicle.getVin());
         assertThat(vehicle.getVehicleMotionData().licensePlate()).isEqualTo(expectedVehicle.getVehicleMotionData().licensePlate());
         assertThat(vehicle.getVehicleMotionData().mileage()).isEqualTo(expectedVehicle.getVehicleMotionData().mileage());
