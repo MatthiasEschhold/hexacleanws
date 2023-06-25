@@ -31,6 +31,12 @@ public class TestConstants {
     public static final String SERIAL_NUMBER_TEST_VALUE = "0123456789";
     public static final String VEHICLE_DOMAIN = "..vehicle.domain..";
     public static final String VEHICLE_DOMAIN_MODEL = "..vehicle.domain.model..";
+    public static final String VEHICLE_ADAPTER = "..vehicle.adapter..";
+    public static final String VEHICLE_ADAPTER_OUT = "..vehicle.adapter.out..";
+    public static final String VEHICLE_USECASE = "..vehicle.usecase..";
+    public static final String VEHICLE_USECASE_OUT = "..vehicle.usecase.out..";
+    public static final String VEHICLE_ADAPTER_IN = "..vehicle.adapter.in..";
+    public static final String VEHICLE_USECASE_IN = "..vehicle.usecase.in..";
     public static final String IO_GITHUB_DOMAINPRIMITIVES = "..io.github.domainprimitives..";
 
 }

@@ -32,7 +32,7 @@ class ArchitectureTest_Task_2_3 {
     }
 
     @ArchTest
-    void vehcileDbQueryAsUseCaseOutShouldFollowDesignRulesForClassStereotypeUseCaseOut(JavaClasses classes) {
+    void vehicleDbQueryAsUseCaseOutShouldFollowDesignRulesForClassStereotypeUseCaseOut(JavaClasses classes) {
         ArchRule rule = classes()
                 .that()
                 .haveSimpleName(USECASE_OUT_QUERY_UNDER_TEST)
