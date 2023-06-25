@@ -10,7 +10,7 @@ import de.arkem.hexaclean.arc.demo.app.lab.TestConstants;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
 @AnalyzeClasses(packages = TestConstants.ROOT_PACKAGE)
-public class ArchitectureTest_Task_1_1 {
+class ArchitectureTest_Task_1_1 {
 
     @ArchTest
     void vehicleAsRootEntityShouldFollowDesignRulesForClassStereotypeRootEntity(JavaClasses classes) {

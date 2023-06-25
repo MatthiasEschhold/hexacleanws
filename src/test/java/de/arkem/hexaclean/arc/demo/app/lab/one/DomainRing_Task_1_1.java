@@ -9,7 +9,6 @@ import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.VIN;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
 class DomainRing_Task_1_1 {
 
     @Test

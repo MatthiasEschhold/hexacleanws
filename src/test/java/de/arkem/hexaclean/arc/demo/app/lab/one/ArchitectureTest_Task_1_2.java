@@ -13,7 +13,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 class ArchitectureTest_Task_1_2 {
 
     @ArchTest
-    void vehicleServiceShouldFollowDesignRulesForClassStereotypeService(JavaClasses classes) {
+    void vehicleServiceAsServiceShouldFollowDesignRulesForClassStereotypeService(JavaClasses classes) {
         ArchRule rule = classes()
                 .that()
                 .haveSimpleName(TestConstants.SERVICE_UNDER_TEST)
