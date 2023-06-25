@@ -1,11 +1,11 @@
 package de.arkem.hexaclean.arc.demo.app.lab.one;
 
 
-import de.arkem.hexaclean.arc.demo.app.lab.TestConstants;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
+import de.arkem.hexaclean.arc.demo.app.lab.TestConstants;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 

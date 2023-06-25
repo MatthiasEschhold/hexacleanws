@@ -1,7 +1,7 @@
 package de.arkem.hexaclean.arc.demo.app.lab;
 
 public class TestConstants {
-    public static final String ROOT_PACKAGE = "com.hexaclean.arc.demo";
+    public static final String ROOT_PACKAGE = "de.arkem.hexaclean.arc.demo";
     public static final String DOMAIN = "..domain..";
     public static final String DOMAIN_SERVICE = "..domain.service..";
     public static final String DOMAIN_MODEL = "..domain.model..";
