@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.two;
+/*package de.arkem.hexaclean.arc.demo.app.lab.two;
 
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.in.VehicleController;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle;
@@ -29,4 +29,4 @@ class InputAdapter_Task_2_1_2_2 {
         return new VehicleController(vehicleQuery);
     }
 
-}
+}*/

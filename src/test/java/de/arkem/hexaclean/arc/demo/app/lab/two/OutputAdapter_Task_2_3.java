@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.two;
+/*package de.arkem.hexaclean.arc.demo.app.lab.two;
 
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.VehicleRepository;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle;
@@ -26,4 +26,4 @@ class OutputAdapter_Task_2_3 {
         return new VehicleRepository();
     }
 
-}
+}*/
