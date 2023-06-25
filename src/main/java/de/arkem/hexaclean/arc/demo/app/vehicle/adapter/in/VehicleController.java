@@ -1,5 +1,6 @@
 package de.arkem.hexaclean.arc.demo.app.vehicle.adapter.in;
 
+import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.in.resource.VehicleResource;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vin;
 import de.arkem.hexaclean.arc.demo.app.vehicle.usecase.in.VehicleQuery;
 
