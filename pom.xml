@@ -8,10 +8,10 @@
         <version>2.7.4</version>
         <relativePath/>
     </parent>
-    <groupId>com.hexaclean.arc.demo</groupId>
-    <artifactId>hexaclean-ws</artifactId>
-    <version>0.0.1</version>
-    <name>hexaclean-ws</name>
+    <groupId>de.arkem.hexaclean.arc.demo</groupId>
+    <artifactId>hexaclean-ws-demo</artifactId>
+    <version>1.0.0</version>
+    <name>hexaclean-ws-demo</name>
 
     <properties>
         <java.version>17</java.version>

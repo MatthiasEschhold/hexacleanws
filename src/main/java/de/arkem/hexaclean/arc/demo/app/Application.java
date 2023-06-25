@@ -1,4 +1,4 @@
-package com.hexaclean.arc.demo.app;
+package de.arkem.hexaclean.arc.demo.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

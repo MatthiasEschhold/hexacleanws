@@ -1,4 +1,4 @@
-package com.hexaclean.arc.demo.app.vehicle.domain.model;
+package de.arkem.hexaclean.arc.demo.app.vehicle.domain.model;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ public class Vehicle {
 
     public Vehicle(Vin vin) {
         this.vin = vin;
-        if(this.vin == null) {
+        if (this.vin == null) {
             throw new IllegalStateException("Vin should not be null");
         }
     }
