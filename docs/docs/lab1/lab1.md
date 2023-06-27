@@ -1,7 +1,5 @@
 # Clean Architecture Pattern Fundamentals
 
-## Ports & Adapters Pattern
-
 ## Clean Architecture Pattern
 
 Look at ring model of the clean architecture pattern. Try to understand the fundamental separation of the domain and the
