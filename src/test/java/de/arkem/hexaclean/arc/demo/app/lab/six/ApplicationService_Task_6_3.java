@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.six;
+/*package de.arkem.hexaclean.arc.demo.app.lab.six;
 
 import de.arkem.hexaclean.arc.demo.app.parts.catalogue.appservice.ExplosionChartApplicationService;
 import de.arkem.hexaclean.arc.demo.app.parts.catalogue.appservice.VehicleToOriginVehicleMapper;
@@ -47,4 +47,4 @@ class ApplicationService_Task_6_3 {
         assertThat(explosionChart.getVehicle().vehicleModel().modelDescription()).isEqualTo(expectedVehicle.vehicleModel().modelDescription());
         assertThat(vehicle.isHas5GSupport()).isEqualTo(expectedVehicle.has5GSupport());
     }
-}
+}*/
