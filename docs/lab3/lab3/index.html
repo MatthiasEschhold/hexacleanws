@@ -17,7 +17,7 @@
         <link rel="next" href="../../lab4/lab4/">
       
       <link rel="icon" href="../../img/logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
       
 
@@ -511,13 +511,13 @@
 
 <!-- Page content -->
 <h1 id="mappings-between-boundaries">Mappings Between Boundaries<a class="headerlink" href="#mappings-between-boundaries" title="Permanent link">⚓︎</a></h1>
-<p>Currently, the <em>Vehicle</em> is the model of the application, and it is not separated from infrastructure. 
-In conclusion the idea of ports and adapters is not consequently followed. The missing element for a fully decoupled 
+<p>Currently, the <em>Vehicle</em> is the model of the application, and it is not separated from infrastructure.
+In conclusion the idea of ports and adapters is not consequently followed. The missing element for a fully decoupled
 domain from infrastructure is a <em>mapping between these boundaries</em>.</p>
 <hr />
 <p><strong>Mapping</strong></p>
 <p>Mappings between boundaries describes a transformation of the state of a source entity model to a target entity model.
-The following code snippets shows an example of different entity model, where for example the <em>baumuster</em> of 
+The following code snippets shows an example of different entity model, where for example the <em>baumuster</em> of
 <em>VehicleDto</em> must be mapped on the property <em>modelName</em> of <em>Vehicle</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Vehicle</span><span class="w"> </span><span class="p">{</span>
 
@@ -563,7 +563,7 @@ The following code snippets shows an example of different entity model, where fo
 <p>All arguments are true. We have to consider our architecture goals for this decision. Our goals are to create
 a isolated domain, and source code that expresses the domain functionality and language.
 A key element to reach this is mapping. A good balance between boilerplate code and decoupling can be reached by
-simplifying and automating mappings based on the so-called <em>Two-Way Mapping Strategy</em>.</p>
+<strong>simplifying</strong> and <strong>automating</strong> mappings based on the so-called <strong><em>Two-Way Mapping Strategy</em></strong>.</p>
 <h3 id="data-transfer-objects-between-layers">Data Transfer Objects Between Layers<a class="headerlink" href="#data-transfer-objects-between-layers" title="Permanent link">⚓︎</a></h3>
 <p>The class-stereotype <i>Data Transfer Object</i> described data objects provided by infrastructure components. In
 detail <i>Data Transfer Object</i> can be a:</p>
@@ -577,7 +577,7 @@ detail <i>Data Transfer Object</i> can be a:</p>
 <h3 id="benefits-of-mappings">Benefits of Mappings<a class="headerlink" href="#benefits-of-mappings" title="Permanent link">⚓︎</a></h3>
 <hr />
 <p><strong>Stable Domain and Fast Adaption</strong></p>
-<p>Changes in the infrastructure affect not the domain. For example an external service changes its response model
+<p>Changes to the infrastructure do not affect the domain. For example an external service changes its response model
 then the changes affect only the mapper of the adapter. This single point of change enables us to
 adapt fast to infrastructure changes.</p>
 <p>In addition to that, it is possible to reduce test efforts. There are no tests of the domain needed when nothing
@@ -591,7 +591,7 @@ cost-intensive.</p>
 <li>new requirements,</li>
 <li>growing business model,</li>
 <li>changing business model,</li>
-<li>new consumers, </li>
+<li>new consumers,</li>
 <li>and so on.</li>
 </ul>
 <p>Since we cannot foresee change, we must look ahead and act. On an architectural level, this means that we have to
@@ -693,12 +693,6 @@ infrastructure. Each of them can <strong>grow</strong>, <strong>modernize</stron
 </details>
 
 As a result you have a compiltation error.
-
-Remember the responsibilities of the class stereotype repository. 
-Which source code elements do you expected in the class 
-<i>VehicleRepository</i>? 
-
-**Make a list**: [Solution](lab3-repository-solution.md)
 
 <b>Introduce a Mapper</b>
 <ol>
@@ -908,7 +902,7 @@ Sources for AutoMapper:
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>

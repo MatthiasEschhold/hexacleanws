@@ -17,7 +17,7 @@
         <link rel="next" href="../../lab6/lab6/">
       
       <link rel="icon" href="../../img/logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
       
 
@@ -376,8 +376,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anemic-domain-model-domain-service-implement-the-behaviour" class="md-nav__link">
-    Anemic Domain Model - Domain Service Implement the Behaviour
+  <a href="#optional-clean-domain-model-with-full-mapping-strategy" class="md-nav__link">
+    Optional: Clean Domain Model with Full Mapping Strategy
   </a>
   
 </li>
@@ -478,8 +478,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anemic-domain-model-domain-service-implement-the-behaviour" class="md-nav__link">
-    Anemic Domain Model - Domain Service Implement the Behaviour
+  <a href="#optional-clean-domain-model-with-full-mapping-strategy" class="md-nav__link">
+    Optional: Clean Domain Model with Full Mapping Strategy
   </a>
   
 </li>
@@ -682,7 +682,7 @@ Rename the
 
    <details>
       <summary>Java & Kotlin</summary>
-      The <i>CleanArchitectureTest</i> located in <i>src/test/java/com/hexaclean/arc/demo/lab/test</i> is a generic test for checking
+      The <i>CleanArchitectureTest</i> located in <i>src/test/java/de/arkem/hexaclean/arc/demo/lab/test</i> is a generic test for checking
       the architecture rules of the clean architecture pattern based on [ArchUnit](https://www.archunit.org/).
       <br/>
       <b>RUN</b> CleanArchitectureTest
@@ -819,11 +819,11 @@ Rename the
 </details>
 
 <h2 id="rich-vs-anemic-domain-model">Rich vs. Anemic Domain Model<a class="headerlink" href="#rich-vs-anemic-domain-model" title="Permanent link">⚓︎</a></h2>
-<p>Based on the functionality if a vehicle supports a 2G connection, a comparison between a rich or anemic domain model
-will be discussed. Let's imaging the fact if a vehicle supports 2G or not can be derived from the equipment list. If
-there is a 2G modul built-in, then the vehicle supports 2G.</p>
+<p>Based on the functionality if a vehicle supports a 5G connection, a comparison between a rich or anemic domain model
+will be discussed. Let's imaging the fact if a vehicle supports 5G or not can be derived from the equipment list. If
+there is a 5G modul built-in, then the vehicle supports 5G.</p>
 <p>This simplified code snippet should make the scenario more clear:</p>
-<div class="highlight"><pre><span></span><code><span class="kt">boolean</span><span class="w"> </span><span class="nf">determine2GSupport</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Equipment</span><span class="o">&gt;</span><span class="w"> </span><span class="n">equipmentList</span><span class="p">){</span>
+<div class="highlight"><pre><span></span><code><span class="kt">boolean</span><span class="w"> </span><span class="nf">determine5GSupport</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Equipment</span><span class="o">&gt;</span><span class="w"> </span><span class="n">equipmentList</span><span class="p">){</span>
 <span class="w">     </span><span class="k">for</span><span class="p">(</span><span class="n">Equipment</span><span class="w"> </span><span class="n">equipment</span><span class="p">:</span><span class="n">equipmentList</span><span class="p">){</span>
 <span class="w">         </span><span class="k">if</span><span class="p">(</span><span class="n">equipment</span><span class="p">.</span><span class="na">getCode</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;GS500&quot;</span><span class="p">)){</span>
 <span class="w">             </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
@@ -835,13 +835,13 @@ there is a 2G modul built-in, then the vehicle supports 2G.</p>
 <h2 id="rich-domain-model-data-validation-and-behaviour">Rich Domain Model - Data, Validation and Behaviour<a class="headerlink" href="#rich-domain-model-data-validation-and-behaviour" title="Permanent link">⚓︎</a></h2>
 <details>
    <summary>Coding Task 5.3</summary>
-Currently, our domain model contains data and validation. Now the functionality to determine 2G support will be added as
+Currently, our domain model contains data and validation. Now the functionality to determine 5G support will be added as
 additional behaviour. The determination can be done without any additional dependencies. So it is possible to integrate
 the behaviour within the domain model.
    <ol>
-      <li>Add the boolean property _has2GSupport_ to the _Vehicle_ and _VehicleResource_ class</li>
+      <li>Add the boolean property _has5GSupport_ to the _Vehicle_ and _VehicleResource_ class</li>
       <li>Extend the <i>VehicleToVehicleResourceMapper</i></li>
-      <li>Implement the behaviour for <i>has2GSupport</i></li>
+      <li>Implement the behaviour for <i>has5GSupport</i></li>
       <li>Trigger the behaviour during object creation or as soon as the equipment list will changed</li>
    </ol>
 </details>
@@ -857,19 +857,12 @@ the behaviour within the domain model.
    <b>RUN</b> all architecture tests
 </details>
 
-<h2 id="anemic-domain-model-domain-service-implement-the-behaviour">Anemic Domain Model - Domain Service Implement the Behaviour<a class="headerlink" href="#anemic-domain-model-domain-service-implement-the-behaviour" title="Permanent link">⚓︎</a></h2>
-<details>
-<summary>Optional Coding Task 5.4</summary>
-<br/>
-Coming soon ...
-<br/>
-</details>
-
-<h1 id="hold-the-domain-model-clean-with-full-mapping-strategy">Hold the Domain Model Clean with Full Mapping Strategy<a class="headerlink" href="#hold-the-domain-model-clean-with-full-mapping-strategy" title="Permanent link">⚓︎</a></h1>
+<h2 id="optional-clean-domain-model-with-full-mapping-strategy">Optional: Clean Domain Model with Full Mapping Strategy<a class="headerlink" href="#optional-clean-domain-model-with-full-mapping-strategy" title="Permanent link">⚓︎</a></h2>
+<p>Use the branch <i>lab/{versionnumber}/lab5-full-mapping</i>.</p>
 <details>
 <summary>Optional Coding Task 5.5</summary>
 Let's change the scenario a little. For our domain the equipment list is not relevant. We need this only to
-determine the enriched domain value <i>has2GSupport</i>.
+determine the enriched domain value <i>has5GSupport</i>.
 <br/>
 <br/>
 We are very accurate and want to create an absolutely clean domain model. 
@@ -897,13 +890,13 @@ all these rings.
       Remove the property <i>equipmentList</i> in <i>VehicleResource</i>
    </li>
    <li>
-      Move the method <i>determine2GSupport</i> to <i>VehicleQueryService</i> (or to an dedicated domain service)
+      Move the method <i>determine5GSupport</i> to <i>VehicleQueryService</i> (or to a dedicated domain service)
    </li>
    <li>
-      Adapt the constructor of <i>Vehicle</i>, so that the property <i>has2GSupport</i> is part of it.
+      Adapt the constructor of <i>Vehicle</i>, so that the property <i>has5GSupport</i> is part of it.
    </li>
    <li>
-      Change the return value of the use case <i>FetchVehicleMasterData</i>  to <i>VehicleMasterDataDomainDTO</i> 
+      Change the return value of the use case <i>FetchVehicleMasterData</i> to <i>VehicleMasterDataDomainDTO</i> 
    </li>
    <li>
       Adapt the mapper <i>VehicleToVehicleDataDtoMapper</i>
@@ -912,7 +905,7 @@ all these rings.
       Adapt the orchestration within the method <i>findByVin</i> of <i>VehicleQueryService</i> 
    </li>
    <li>
-      Fix the compilation erros in existing unit tests 
+      Fix the compilation errors in existing unit tests 
    </li>
 </ol>
 
@@ -1015,7 +1008,7 @@ all these rings.
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>

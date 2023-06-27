@@ -15,7 +15,7 @@
       
       
       <link rel="icon" href="../../img/logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
       
 
@@ -355,29 +355,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#introduce-the-use-case-fetchvehiclebylicenseplate" class="md-nav__link">
-    Introduce the Use Case FetchVehicleByLicensePlate
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#the-adapterout-usecasein-pattern" class="md-nav__link">
     The Adapter.Out - UseCase.In Pattern
   </a>
   
+    <nav class="md-nav" aria-label="The Adapter.Out - UseCase.In Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduce-the-use-case-fetchvehiclebylicenseplate-vehicle-module" class="md-nav__link">
+    Introduce the Use Case FetchVehicleByLicensePlate (Vehicle Module)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implement-the-use-case-fetchvehicle-garage-order-module" class="md-nav__link">
+    Implement the Use Case FetchVehicle (Garage Order Module)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#implement-the-application-service-pattern" class="md-nav__link">
-    Implement the Application Service Pattern
+  <a href="#the-application-service-pattern" class="md-nav__link">
+    The Application Service Pattern
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-architecture-fitness-functions" class="md-nav__link">
-    Clean Architecture Fitness Functions
+  <a href="#clean-architecture-fitness-functions-currently-not-working" class="md-nav__link">
+    Clean Architecture Fitness Functions - Currently Not Working
   </a>
   
 </li>
@@ -429,29 +442,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#introduce-the-use-case-fetchvehiclebylicenseplate" class="md-nav__link">
-    Introduce the Use Case FetchVehicleByLicensePlate
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#the-adapterout-usecasein-pattern" class="md-nav__link">
     The Adapter.Out - UseCase.In Pattern
   </a>
   
+    <nav class="md-nav" aria-label="The Adapter.Out - UseCase.In Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduce-the-use-case-fetchvehiclebylicenseplate-vehicle-module" class="md-nav__link">
+    Introduce the Use Case FetchVehicleByLicensePlate (Vehicle Module)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implement-the-use-case-fetchvehicle-garage-order-module" class="md-nav__link">
+    Implement the Use Case FetchVehicle (Garage Order Module)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#implement-the-application-service-pattern" class="md-nav__link">
-    Implement the Application Service Pattern
+  <a href="#the-application-service-pattern" class="md-nav__link">
+    The Application Service Pattern
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-architecture-fitness-functions" class="md-nav__link">
-    Clean Architecture Fitness Functions
+  <a href="#clean-architecture-fitness-functions-currently-not-working" class="md-nav__link">
+    Clean Architecture Fitness Functions - Currently Not Working
   </a>
   
 </li>
@@ -524,38 +550,41 @@
 <!-- Page content -->
 <h1 id="the-domain-grows-part-iii">The Domain Grows Part III<a class="headerlink" href="#the-domain-grows-part-iii" title="Permanent link">⚓︎</a></h1>
 <h2 id="new-domain-modules">New Domain Modules<a class="headerlink" href="#new-domain-modules" title="Permanent link">⚓︎</a></h2>
-<p>Let's have a look on the introduced domain modules <em>GarageOrder</em> and <em>PartsCatalogue</em>. Both domain modules 
+<p>Investigate the introduced domain modules <em>GarageOrder</em> and <em>PartsCatalogue</em>. Both domain modules 
 depends on the <em>Vehicle</em> domain module.</p>
-<p>In context of the garage order only the <em>license plate</em> and, the <em>mileage</em> are relevant. </p>
-<p>For the parts catalogue only the <em>vin</em>, the <em>vehicle model</em> and, the domain value <em>has2GSupport</em> 
+<p>In context of the garage order only the <em>license plate</em> and, the <em>mileage</em> of a vehicle are relevant. </p>
+<p>For the parts catalogue only the <em>vin</em>, the <em>vehicle model</em> and, the domain value <em>has5GSupport</em> 
 are from importance.</p>
 <p>See the garage order form for more details:</p>
 <p><img alt="Garage Order Form" src="../../img/garage-order-form.png" /></p>
-<p>See also a sample explosion chart as central domain object of the parts catalogue:</p>
-<p><img alt="Eplosion Chart for Front Brake" src="../../img/explosion-chart.png" /></p>
-<p>Additional the corresponding spare parts table.</p>
+<p>See also the explosion chart of the front brake, as a example for the graphical visualization of a spare part in the parts catalogue:</p>
+<p><img alt="Explosion Chart for Front Brake" src="../../img/explosion-chart.png" /></p>
+<p>Additional information are described in the corresponding spare parts table.</p>
 <p><img alt="Spare Parts Table for Front Brake" src="../../img/spare-parts-table.png" /></p>
 <h2 id="design-dependencies-between-domain-modules">Design Dependencies Between Domain Modules<a class="headerlink" href="#design-dependencies-between-domain-modules" title="Permanent link">⚓︎</a></h2>
-<p>In a traditional data-centric approach it is common to design the application around a centric data model. 
-But we learned that this leads to high coupling in the long term. In this lab we meet three alternative 
-solution strategies to handle dependencies between domain modules.</p>
-<h2 id="introduce-the-use-case-fetchvehiclebylicenseplate">Introduce the Use Case FetchVehicleByLicensePlate<a class="headerlink" href="#introduce-the-use-case-fetchvehiclebylicenseplate" title="Permanent link">⚓︎</a></h2>
+<p>In a traditional data-centric and layered architecture, it is common to design the application around a centric data model. 
+But this leads to high coupling in the long term (see section "Problems of Layered Architecture" in the trainings slides). 
+In this lab the <i>Adapter.Out - UseCase.In Pattern</i> and the <i>Application Service Pattern</i> are described. Additional approaches
+are shown in the training slides.</p>
+<h2 id="the-adapterout-usecasein-pattern">The Adapter.Out - UseCase.In Pattern<a class="headerlink" href="#the-adapterout-usecasein-pattern" title="Permanent link">⚓︎</a></h2>
+<p>Implement the <i>Adapter.Out - UseCase.In Pattern</i> between the domain modules <i>Garage order</i> and <i>Vehicle</i>.</p>
+<h3 id="introduce-the-use-case-fetchvehiclebylicenseplate-vehicle-module">Introduce the Use Case FetchVehicleByLicensePlate (Vehicle Module)<a class="headerlink" href="#introduce-the-use-case-fetchvehiclebylicenseplate-vehicle-module" title="Permanent link">⚓︎</a></h3>
 <details>
    <summary>Coding Task 6.1</summary>
    <ol>
       <li>
-         Introduce a additional incoming use case in the domain module <i>Vehicle</i> with the name 
-         <i>FetchVehicleByLicensePlate</i> that contains the method <i>fetchByLicensePlate</i>
+         Introduce an additional incoming use case in the domain module <i>Vehicle</i> with the name 
+         <i>FetchVehicleByLicensePlate</i>. The use case should contain the method <i>fetchByLicensePlate</i>
       </li>
       <li>
-         Implement the use case by extending the <i>VehicleQueryService</i>
+         Implement the use case by extending the <i>VehicleQueryService</i>.
       </li>
    </ol>
 
    <details>
       <summary>Java</summary>
 
-<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">fetchByLicensePlate</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">fetchByLicensePlate</span><span class="p">(</span><span class="n">LicensePlate</span><span class="w"> </span><span class="n">licensePlate</span><span class="p">);</span>
 </code></pre></div>
 
 </details>
@@ -563,7 +592,7 @@ solution strategies to handle dependencies between domain modules.</p>
 <details>
       <summary>Kotlin</summary>
 
-<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">fetchByLicensePlate</span><span class="p">(</span><span class="n">vin</span><span class="p">:</span><span class="w"> </span><span class="n">Vin</span><span class="p">):</span><span class="w"> </span><span class="n">Vehicle</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">fetchByLicensePlate</span><span class="p">(</span><span class="n">licensePlate</span><span class="p">:</span><span class="w"> </span><span class="n">LicensePlate</span><span class="p">):</span><span class="w"> </span><span class="n">Vehicle</span><span class="p">;</span>
 </code></pre></div>
 
    </details>
@@ -571,7 +600,7 @@ solution strategies to handle dependencies between domain modules.</p>
    <details>
       <summary>C#</summary>
 
-<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">FetchByLicensePlate</span><span class="p">(</span><span class="n">Vin</span><span class="w"> </span><span class="n">vin</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="n">Vehicle</span><span class="w"> </span><span class="nf">FetchByLicensePlate</span><span class="p">(</span><span class="n">LicensePlate</span><span class="w"> </span><span class="n">licensePlate</span><span class="p">);</span>
 </code></pre></div>
 
    </details>
@@ -587,11 +616,9 @@ solution strategies to handle dependencies between domain modules.</p>
    <b>RUN</b> all architecture tests (C#)
 </details>
 
-<h2 id="the-adapterout-usecasein-pattern">The Adapter.Out - UseCase.In Pattern<a class="headerlink" href="#the-adapterout-usecasein-pattern" title="Permanent link">⚓︎</a></h2>
+<h3 id="implement-the-use-case-fetchvehicle-garage-order-module">Implement the Use Case FetchVehicle (Garage Order Module)<a class="headerlink" href="#implement-the-use-case-fetchvehicle-garage-order-module" title="Permanent link">⚓︎</a></h3>
 <details>
 <summary>Coding Task 6.2</summary>
-
-Implement the Adapter.Out - UseCase.In Pattern between the domain modules <i>garage order</i> and <i>vehicle</i>.
    <ol>
       <li>
          Have a look at the outgoing use case <i>FetchVehicle</i> in <i>garage/order/usecase/out</i>
@@ -612,23 +639,23 @@ Implement the Adapter.Out - UseCase.In Pattern between the domain modules <i>gar
    <b>RUN</b> all architecture tests (C#)
 </details>
 
-<h2 id="implement-the-application-service-pattern">Implement the Application Service Pattern<a class="headerlink" href="#implement-the-application-service-pattern" title="Permanent link">⚓︎</a></h2>
+<h2 id="the-application-service-pattern">The Application Service Pattern<a class="headerlink" href="#the-application-service-pattern" title="Permanent link">⚓︎</a></h2>
 <details>
    <summary>Coding Task 6.3</summary>
-Implement the <i>Application Service Pattern</i> between the domain modules <i>parts catalogue</i> and <i>vehicle</i>.
+Implement the <i>Application Service Pattern</i> between the domain modules <i>Parts Catalogue</i> and <i>Vehicle</i>.
 <ol>
    <li>
       Have a look at the <i>ExplosionChartApplicationService</i> in <i>parts/catalogue/appservice</i> and notice the dependency to
       <i>VehicleQuery</i> of the domain module vehicle.
    </li>
    <li>
-        Implement a mapper with the name <i>VehicleToOriginVehicleMapper</i>
+        Complete the implementation of the use case <i>ExplosionChartQuery</i> in <i>ExplosionChartQueryService</i>
    </li>
    <li>
-        Implement the use case <i>ExposionChartQuery</i>
+        Use <i>VehicleQuery</i> from the vehicle module to fetch necessary vehicle data
    </li>
-   <li>
-        Use <i>VehicleQuery</i> to fetch necessary vehicle data
+    <li>
+        Implement and use the mapper <i>VehicleToOriginVehicleMapper</i>
    </li>
 </ol>
 
@@ -643,7 +670,7 @@ Implement the <i>Application Service Pattern</i> between the domain modules <i>p
    <b>RUN</b> all architecture tests (C#)
 </details>
 
-<h2 id="clean-architecture-fitness-functions">Clean Architecture Fitness Functions<a class="headerlink" href="#clean-architecture-fitness-functions" title="Permanent link">⚓︎</a></h2>
+<h2 id="clean-architecture-fitness-functions-currently-not-working">Clean Architecture Fitness Functions - Currently Not Working<a class="headerlink" href="#clean-architecture-fitness-functions-currently-not-working" title="Permanent link">⚓︎</a></h2>
 <details>
    <summary>Optional Coding Task 6.4</summary>
 
@@ -742,7 +769,7 @@ Implement the <i>Application Service Pattern</i> between the domain modules <i>p
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>

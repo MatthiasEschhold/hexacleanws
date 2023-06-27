@@ -17,7 +17,7 @@
         <link rel="next" href="../../lab5/lab5/">
       
       <link rel="icon" href="../../img/logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
       
 
@@ -593,25 +593,29 @@ the <i>VehicleToVehicleResourceMapper</i>.
 
 <h2 id="introduce-the-vehiclemasterdataserviceclient">Introduce the VehicleMasterDataServiceClient<a class="headerlink" href="#introduce-the-vehiclemasterdataserviceclient" title="Permanent link">⚓︎</a></h2>
 <details>
-<summary>Coding Task 4.3</summary>
+<summary>Coding Task 4.3 and Group Discussion</summary>
 
 There are some constraints given by the company context. There is one central system for 
 vehicle master data. This system provides the necessary master data.
 <br/>
 <br/>
-Due to this you have to introduce the <i>VehicleMasterDataServiceClient</i> and create the adapter 
-implementation with the name <i>VehicleMasterDataToVehiceDtoMapper</i>. 
-The external data object <i>VehicleDataDto</i> (package <i>vehicle/adapter/out/dto</i>) and the 
-outgoing use case FetchVehicleMasterData (package <i>vehicle/usecase/out</i>) are already prepared for this task.
-<br/>
-<br/>
+Due to this the adapter implementation based on the classes <i>VehicleMasterDataServiceClient</i> and <i>VehicleMasterDataToVehiceDtoMapper</i> as well as
+the outgoing use case (package <i>vehicle/adapter/out/dto</i> and <i>vehicle/usecase/out</i>) are introduced.
+
 The external API returns a lot of information we do not need in our domain. This is visible in the
 <i>VehicleDataDto</i> class. For example the property <i>salesRelatedInformation</i> is not needed in our domain.
 Due to this we only extract the properties we defined in the
 <i>VehicleMasterData</i> domain object. 
-<br/>
-<br/>
-Have a look at the <i>VehicleDataDto</i> and implement the service client and mapper.
+
+<ol>
+    <li>
+        Understand the architecture, code and motivation beyond. Discuss it in the group.
+    </li>
+    <li>
+        Connect the <i>VehicleService</i> to the company vehicle master data service according to the clean architecture
+principles.
+    </li>
+</ol>
 
 </details>
 
@@ -748,7 +752,7 @@ vehicle master data will be queried from a external API.
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>

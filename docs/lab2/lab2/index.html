@@ -17,7 +17,7 @@
         <link rel="next" href="../../lab3/lab3/">
       
       <link rel="icon" href="../../img/logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
       
 
@@ -513,7 +513,7 @@ several consumers.</em></p>
 
 <span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">DependencyTwo</span><span class="w"> </span><span class="n">two</span><span class="p">;</span>
 
-<span class="w">    </span><span class="nd">@Autowired</span><span class="w"> </span><span class="c1">// contructor injection</span>
+<span class="w">    </span><span class="nd">@Autowired</span><span class="w"> </span><span class="c1">// constructor injection</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">VehicleService</span><span class="p">(</span><span class="n">DependencyTwo</span><span class="w"> </span><span class="n">two</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">two</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">two</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -587,7 +587,7 @@ The class-stereotype <i>Controller</i> is the place to
       <li>Create the incoming use case <i>VehicleQuery</i> with the method</li>
       <li>Replace the hard-coded <i>Vehicle</i> within <i>VehicleController</i> with the usage of <i>VehicleQuery</i></li>
       <li>The dependency between <i>VehicleController</i> and <i>VehicleQuery</i> should be resolved via <i>constructor injection</i></li>
-      <li>Implement the incoming usecase <i>VehicleQuery</i> through <i>VehicleService</i></li>
+      <li>The <i>VehicleService</i> should implement the usecase <i>VehicleQuery</i></li>
    </ol>
 
 <details>
@@ -688,7 +688,7 @@ specific implementation. The dependency is inverted!</p>
 </details>
 
 <details>
-   <summary>Optional Questions</summary>
+   <summary>Additional Questions and Group Discussion/summary>
 
 For dealing with persistence aspects spring-data-jpa or spring-data-jdbc uses annotations like
 <i>@Entity</i>, <i>@Table</i>, <i>@Id</i>, <i>@Column</i>, etc. Often this concepts need also an empty constructor as
@@ -838,7 +838,7 @@ well as setter and getters for all properties.
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.footer", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
       
     
   </body>
