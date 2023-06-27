@@ -17,7 +17,7 @@ import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.VIN;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-public class DomainRing_Task_6_1 {
+class DomainRing_Task_6_1 {
 
     @Test
     @DisplayName("The VehicleService should implement the orchestration between different outgoing use cases")
@@ -31,7 +31,7 @@ public class DomainRing_Task_6_1 {
         when(fetchVehicleMasterData.fetch(vin)).thenReturn(createExpectedVehicleMasterData());
 
         Vehicle expectedVehicle = createExpectedVehicle();
-        Vehicle vehicle = new VehicleQueryService(vehicleDbQuery, fetchVehicleMasterData).findByLicensePlate(expectedVehicle.getVehicleMotionData().licensePlate());
+        Vehicle vehicle = new VehicleQueryService(vehicleDbQuery, fetchVehicleMasterData).fetchByLicensePlate(expectedVehicle.getVehicleMotionData().licensePlate());
 
 
         assertThat(vehicle).isEqualTo(expectedVehicle);

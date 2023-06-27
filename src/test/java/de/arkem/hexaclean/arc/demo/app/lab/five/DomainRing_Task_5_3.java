@@ -12,7 +12,7 @@ import static de.arkem.hexaclean.arc.demo.app.lab.SimpleTestObjectFactory.create
 import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.VIN;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DomainRing_Task_5_3 {
+class DomainRing_Task_5_3 {
     @Test
     @DisplayName("The vehicle supports 5G")
     void the_vehicle_supports_5G() {

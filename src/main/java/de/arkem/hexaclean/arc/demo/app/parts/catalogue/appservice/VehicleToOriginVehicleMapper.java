@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 public interface VehicleToOriginVehicleMapper {
 
     @Mapping(source = "vin.value", target = "vin")
-    @Mapping(source = "has2GSupport", target = "has2GSupport")
+    @Mapping(source = "has5GSupport", target = "has5GSupport")
     @Mapping(source = "vehicleMasterData.vehicleModel", target = "vehicleModel")
     Vehicle mapOriginVehicleToVehicle(de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle origin);
 

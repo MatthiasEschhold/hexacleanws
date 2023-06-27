@@ -11,7 +11,7 @@ import static de.arkem.hexaclean.arc.demo.app.lab.ComplexTestObjectFactory.creat
 import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.VIN;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class OutputAdapter_Task_5_1 {
+class OutputAdapter_Task_5_1 {
 
     @Test
     @DisplayName("The VehicleRepository should return a valid Vehicle")

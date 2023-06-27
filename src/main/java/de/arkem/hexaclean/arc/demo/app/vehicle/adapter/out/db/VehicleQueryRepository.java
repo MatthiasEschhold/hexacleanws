@@ -1,5 +1,6 @@
 package de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db;
 
+import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.LicensePlate;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vin;
 import de.arkem.hexaclean.arc.demo.app.vehicle.usecase.out.VehicleDbQuery;
@@ -20,11 +21,14 @@ public class VehicleQueryRepository implements VehicleDbQuery {
         return mapper.mapVehicleDbEntityToVehicle(findVehicleDbEntity(vin));
     }
 
-    /*private VehicleDbEntity findVehicleDbEntity(Vin vin){
-        VehicleDbEntity vehicleDbEntity = new VehicleDbEntity();
-        vehicleDbEntity.setVin(vin.value());
-        return vehicleDbEntity;
-    }*/
+    @Override
+    public Vehicle findVehicleByLicensePlate(LicensePlate licensePlate) {
+        VehicleDbEntity dbEntity = new VehicleDbEntity();
+        dbEntity.setVin(VIN);
+        dbEntity.setLicensePlate(licensePlate.value());
+        dbEntity.setMilage(MILEAGE_TEST_VALUE);
+        return mapper.mapVehicleDbEntityToVehicle(dbEntity);
+    }
 
     private VehicleDbEntity findVehicleDbEntity(Vin vin) {
         VehicleDbEntity dbEntity = new VehicleDbEntity();

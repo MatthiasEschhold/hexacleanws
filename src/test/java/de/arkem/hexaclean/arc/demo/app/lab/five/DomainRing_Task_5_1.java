@@ -15,7 +15,7 @@ import static de.arkem.hexaclean.arc.demo.app.lab.TestConstants.VIN;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
 
-public class DomainRing_Task_5_1 {
+class DomainRing_Task_5_1 {
 
     @Test
     @DisplayName("The VehicleService should implement the orchestration between different outgoing use cases")

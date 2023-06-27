@@ -11,7 +11,7 @@ import static de.arkem.hexaclean.arc.demo.app.lab.ComplexTestObjectFactory.creat
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-public class DomainService_Task_5_2 {
+class DomainService_Task_5_2 {
 
     @Test
     @DisplayName("The VehicleCommandService should create a vehicle")

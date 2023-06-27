@@ -21,6 +21,8 @@ public class CleanArchitectureTest {
                 .adapterOut("..adapter.out..")
                 .useCaseIn("..usecase.in..")
                 .useCaseOut("..usecase.out..")
+                .adapterOutOfAdapterOutUseCaseInPattern("..garage.order.adapter.out..")
+                .applicationService("..parts.catalogue.appservice..")
                 .ignore("..domain.dto..");
         rule.check(javaClasses);
     }
@@ -35,6 +37,8 @@ public class CleanArchitectureTest {
                 .adapter("..adapter..")
                 .useCaseIn("..usecase.in..")
                 .useCaseOut("..usecase.out..")
+                .adapterOutOfAdapterOutUseCaseInPattern("..garage.order.adapter.out..")
+                .applicationService("..parts.catalogue.appservice..")
                 .ignore("..domain.dto..");
         rule.check(javaClasses);
     }
@@ -47,6 +51,8 @@ public class CleanArchitectureTest {
                 .application("..application..")
                 .adapter("..adapter..")
                 .useCase("..usecase..")
+                .adapterOutOfAdapterOutUseCaseInPattern("..garage.order.adapter.out..")
+                .applicationService("..parts.catalogue.appservice..")
                 .ignore("..domain.dto..");
         rule.check(javaClasses);
     }

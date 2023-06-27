@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static de.arkem.hexaclean.arc.demo.app.lab.ComplexTestObjectFactory.createExpectedVehicle;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class OutputAdapter_Task_5_2 {
+class OutputAdapter_Task_5_2 {
 
     @Test
     @DisplayName("The VehicleCommandRepository should save a vehicle")
