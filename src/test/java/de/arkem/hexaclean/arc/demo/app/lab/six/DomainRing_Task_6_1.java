@@ -31,8 +31,8 @@ class DomainRing_Task_6_1 {
         when(fetchVehicleMasterData.fetch(vin)).thenReturn(createExpectedVehicleMasterData());
 
         Vehicle expectedVehicle = createExpectedVehicle();
-        Vehicle vehicle = new VehicleQueryService(vehicleDbQuery, fetchVehicleMasterData).fetchByLicensePlate(expectedVehicle.getVehicleMotionData().licensePlate());
-
+        Vehicle vehicle = new VehicleQueryService(vehicleDbQuery, fetchVehicleMasterData)
+                .fetchByLicensePlate(expectedVehicle.getVehicleMotionData().licensePlate());
 
         assertThat(vehicle).isEqualTo(expectedVehicle);
         assertThat(vehicle.getVehicleMasterData().vehicleModel().modelType()).isEqualTo(expectedVehicle.getVehicleMasterData().vehicleModel().modelType());

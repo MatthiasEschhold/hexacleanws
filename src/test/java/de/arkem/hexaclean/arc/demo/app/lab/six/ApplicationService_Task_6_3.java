@@ -21,16 +21,16 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.when;
 
-
 class ApplicationService_Task_6_3 {
 
     @Test
-    @DisplayName("The vehicle supports not 2G")
-    void the_vehicle_supports_not_2G() {
+    @DisplayName("Should return a explosion chart")
+    void should_return_a_explosion_chart() {
         FetchExplosionChart fetchExplosionChart = Mockito.mock(FetchExplosionChart.class);
         VehicleQuery vehicleQuery = Mockito.mock(VehicleQuery.class);
         VehicleToOriginVehicleMapper mapper = Mockito.mock(VehicleToOriginVehicleMapper.class);
         Vehicle vehicle = createExpectedVehicle();
+
         de.arkem.hexaclean.arc.demo.app.parts.catalogue.domain.model.vehicle.Vehicle expectedVehicle =
                 new de.arkem.hexaclean.arc.demo.app.parts.catalogue.domain.model.vehicle.Vehicle(VIN, false, new VehicleModel(VEHICLE_MODEL_DESCRIPTION_TEST_VALUE, VEHICLE_MODEL_TYPE_TEST_VALUE));
 

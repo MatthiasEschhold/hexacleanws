@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.six;
+/*package de.arkem.hexaclean.arc.demo.app.lab.six;
 
 import de.arkem.hexaclean.arc.demo.app.garage.order.adapter.out.vehicle.VehicleModuleClient;
 import de.arkem.hexaclean.arc.demo.app.garage.order.adapter.out.vehicle.VehicleToOriginVehicleMapper;
@@ -31,3 +31,4 @@ class OutputAdapter_Task_6_2 {
     }
 
 }
+*/

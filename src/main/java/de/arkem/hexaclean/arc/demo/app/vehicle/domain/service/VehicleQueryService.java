@@ -3,12 +3,11 @@ package de.arkem.hexaclean.arc.demo.app.vehicle.domain.service;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.LicensePlate;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vin;
-import de.arkem.hexaclean.arc.demo.app.vehicle.usecase.in.FetchVehicleByLicensePlate;
 import de.arkem.hexaclean.arc.demo.app.vehicle.usecase.in.VehicleQuery;
 import de.arkem.hexaclean.arc.demo.app.vehicle.usecase.out.FetchVehicleMasterData;
 import de.arkem.hexaclean.arc.demo.app.vehicle.usecase.out.VehicleDbQuery;
 
-public class VehicleQueryService implements VehicleQuery, FetchVehicleByLicensePlate {
+public class VehicleQueryService implements VehicleQuery {
 
     private VehicleDbQuery vehicleDbQuery;
     private FetchVehicleMasterData fetchVehicleMasterData;
@@ -24,7 +23,7 @@ public class VehicleQueryService implements VehicleQuery, FetchVehicleByLicenseP
         return vehicle;
     }
 
-    @Override
+    //@Override
     public Vehicle fetchByLicensePlate(LicensePlate licensePlate) {
         Vehicle vehicle = vehicleDbQuery.findVehicleByLicensePlate(licensePlate);
         enrichWithVehicleMasterData(vehicle);
