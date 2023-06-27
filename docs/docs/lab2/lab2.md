@@ -23,7 +23,7 @@ public class Consumer {
 
     private DependencyTwo two;
 
-    @Autowired // contructor injection
+    @Autowired // constructor injection
     public VehicleService(DependencyTwo two) {
         this.two = two;
     }
@@ -113,7 +113,7 @@ public VehicleRootEntity ReadVehicle(string vin) {...}
       <li>Create the incoming use case <i>VehicleQuery</i> with the method</li>
       <li>Replace the hard-coded <i>Vehicle</i> within <i>VehicleController</i> with the usage of <i>VehicleQuery</i></li>
       <li>The dependency between <i>VehicleController</i> and <i>VehicleQuery</i> should be resolved via <i>constructor injection</i></li>
-      <li>Implement the incoming usecase <i>VehicleQuery</i> through <i>VehicleService</i></li>
+      <li>The <i>VehicleService</i> should implement the usecase <i>VehicleQuery</i></li>
    </ol>
 
 <details>
@@ -238,7 +238,7 @@ VehicleRootEntity FindVehicleByVin(Vin vin) {...}
 </details>
 
 <details>
-   <summary>Optional Questions</summary>
+   <summary>Additional Questions and Group Discussion/summary>
 
 For dealing with persistence aspects spring-data-jpa or spring-data-jdbc uses annotations like
 <i>@Entity</i>, <i>@Table</i>, <i>@Id</i>, <i>@Column</i>, etc. Often this concepts need also an empty constructor as

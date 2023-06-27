@@ -9,7 +9,7 @@ infrastructure.
 
 ![Ring model of the clean architecture pattern](../img/clean-architecture.png)
 
-**True or false?**
+**True or False?**
 
 1. The infrastructure provides interfaces which the domain can implement.
 2. Adapter implementations (also known as adapters) are located within the infrastructure ring and are responsible to
@@ -20,7 +20,72 @@ infrastructure.
 6. The use case ring connects the infrastructure and the domain.
 7. Use case definitions are driven by domain.
 
-[Solution](Lab1-true-false-solution.md)
+<details>
+<summary>Solution</summary>
+   <table>
+      <tr>
+         <th>Statement</th>
+         <th>True / False</th>
+      </tr>
+      <tr>
+         <td>
+            The infrastructure provides interfaces which the domain can implement.
+         </td>
+         <td>
+            False
+         </td>
+      </tr>
+      <tr>
+         <td>
+            The adapters are located within the infrastructure ring and are responsible to
+   integrate and access infrastructure components (e.g. file system, http in- and outbound).
+         </td>
+         <td>
+            True
+         </td>
+      </tr>
+      <tr>
+         <td>
+             The domain only depends on use cases located in the use case ring.
+         </td>
+         <td>
+            True
+         </td>
+      </tr>
+      <tr>
+         <td>
+            The domain provides interfaces which will be implemented by adapters.
+         </td>
+         <td>
+            True
+         </td>
+      </tr>
+      <tr>
+         <td>
+            Use case definitions are driven by adapters.
+         </td>
+         <td>
+            False
+         </td>
+      </tr>
+      <tr>
+         <td>
+            The use case ring connects the infrastructure and the domain.
+         </td>
+         <td>
+            True
+         </td>
+      </tr>
+      <tr>
+         <td>
+            Use case definitions are driven by domain.
+         </td>
+         <td>
+            True
+         </td>
+      </tr> 
+   </table>
+</details>
 
 ## Underlying Design Principles
 

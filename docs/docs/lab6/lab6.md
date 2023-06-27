@@ -2,43 +2,48 @@
 
 ## New Domain Modules
 
-Let's have a look on the introduced domain modules _GarageOrder_ and _PartsCatalogue_. Both domain modules 
+Investigate the introduced domain modules _GarageOrder_ and _PartsCatalogue_. Both domain modules 
 depends on the _Vehicle_ domain module.
 
-In context of the garage order only the _license plate_ and, the _mileage_ are relevant. 
+In context of the garage order only the _license plate_ and, the _mileage_ of a vehicle are relevant. 
  
-For the parts catalogue only the _vin_, the _vehicle model_ and, the domain value _has2GSupport_ 
+For the parts catalogue only the _vin_, the _vehicle model_ and, the domain value _has5GSupport_ 
 are from importance.
 
 See the garage order form for more details:
 
 ![Garage Order Form](../img/garage-order-form.png)
 
-See also a sample explosion chart as central domain object of the parts catalogue:
+See also the explosion chart of the front brake, as a example for the graphical visualization of a spare part in the parts catalogue:
 
-![Eplosion Chart for Front Brake](../img/explosion-chart.png)
+![Explosion Chart for Front Brake](../img/explosion-chart.png)
 
-Additional the corresponding spare parts table.
+Additional information are described in the corresponding spare parts table.
 
 ![Spare Parts Table for Front Brake](../img/spare-parts-table.png)
 
 ## Design Dependencies Between Domain Modules
 
-In a traditional data-centric approach it is common to design the application around a centric data model. 
-But we learned that this leads to high coupling in the long term. In this lab we meet three alternative 
-solution strategies to handle dependencies between domain modules.
+In a traditional data-centric and layered architecture, it is common to design the application around a centric data model. 
+But this leads to high coupling in the long term (see section "Problems of Layered Architecture" in the trainings slides). 
+In this lab the <i>Adapter.Out - UseCase.In Pattern</i> and the <i>Application Service Pattern</i> are described. Additional approaches
+are shown in the training slides.
 
-## Introduce the Use Case FetchVehicleByLicensePlate
+## The Adapter.Out - UseCase.In Pattern
+
+Implement the <i>Adapter.Out - UseCase.In Pattern</i> between the domain modules <i>Garage order</i> and <i>Vehicle</i>.
+
+### Introduce the Use Case FetchVehicleByLicensePlate (Vehicle Module)
 
 <details>
    <summary>Coding Task 6.1</summary>
    <ol>
       <li>
-         Introduce a additional incoming use case in the domain module <i>Vehicle</i> with the name 
-         <i>FetchVehicleByLicensePlate</i> that contains the method <i>fetchByLicensePlate</i>
+         Introduce an additional incoming use case in the domain module <i>Vehicle</i> with the name 
+         <i>FetchVehicleByLicensePlate</i>. The use case should contain the method <i>fetchByLicensePlate</i>
       </li>
       <li>
-         Implement the use case by extending the <i>VehicleQueryService</i>
+         Implement the use case by extending the <i>VehicleQueryService</i>.
       </li>
    </ol>
    
@@ -46,7 +51,7 @@ solution strategies to handle dependencies between domain modules.
       <summary>Java</summary>
 
 ```java
-Vehicle fetchByLicensePlate(Vin vin);
+Vehicle fetchByLicensePlate(LicensePlate licensePlate);
 ```
 
 </details>
@@ -55,7 +60,7 @@ Vehicle fetchByLicensePlate(Vin vin);
       <summary>Kotlin</summary>
 
 ```kotlin
-fun fetchByLicensePlate(vin: Vin): Vehicle;
+fun fetchByLicensePlate(licensePlate: LicensePlate): Vehicle;
 ```
 
    </details>
@@ -64,7 +69,7 @@ fun fetchByLicensePlate(vin: Vin): Vehicle;
       <summary>C#</summary>
 
 ```java
-Vehicle FetchByLicensePlate(Vin vin);
+Vehicle FetchByLicensePlate(LicensePlate licensePlate);
 ```
 
    </details>
@@ -80,12 +85,10 @@ Vehicle FetchByLicensePlate(Vin vin);
    <b>RUN</b> all architecture tests (C#)
 </details>
 
-## The Adapter.Out - UseCase.In Pattern
+### Implement the Use Case FetchVehicle (Garage Order Module)
 
 <details>
 <summary>Coding Task 6.2</summary>
-
-Implement the Adapter.Out - UseCase.In Pattern between the domain modules <i>garage order</i> and <i>vehicle</i>.
    <ol>
       <li>
          Have a look at the outgoing use case <i>FetchVehicle</i> in <i>garage/order/usecase/out</i>
@@ -106,24 +109,24 @@ Implement the Adapter.Out - UseCase.In Pattern between the domain modules <i>gar
    <b>RUN</b> all architecture tests (C#)
 </details>
 
-## Implement the Application Service Pattern
+## The Application Service Pattern
 
 <details>
    <summary>Coding Task 6.3</summary>
-Implement the <i>Application Service Pattern</i> between the domain modules <i>parts catalogue</i> and <i>vehicle</i>.
+Implement the <i>Application Service Pattern</i> between the domain modules <i>Parts Catalogue</i> and <i>Vehicle</i>.
 <ol>
    <li>
       Have a look at the <i>ExplosionChartApplicationService</i> in <i>parts/catalogue/appservice</i> and notice the dependency to
       <i>VehicleQuery</i> of the domain module vehicle.
    </li>
    <li>
-        Implement a mapper with the name <i>VehicleToOriginVehicleMapper</i>
+        Complete the implementation of the use case <i>ExplosionChartQuery</i> in <i>ExplosionChartQueryService</i>
    </li>
    <li>
-        Implement the use case <i>ExposionChartQuery</i>
+        Use <i>VehicleQuery</i> from the vehicle module to fetch necessary vehicle data
    </li>
-   <li>
-        Use <i>VehicleQuery</i> to fetch necessary vehicle data
+    <li>
+        Implement and use the mapper <i>VehicleToOriginVehicleMapper</i>
    </li>
 </ol>
 
@@ -138,7 +141,7 @@ Implement the <i>Application Service Pattern</i> between the domain modules <i>p
    <b>RUN</b> all architecture tests (C#)
 </details>
 
-##  Clean Architecture Fitness Functions
+##  Clean Architecture Fitness Functions - Currently Not Working
 
 <details>
    <summary>Optional Coding Task 6.4</summary>

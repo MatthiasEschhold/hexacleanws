@@ -1,14 +1,14 @@
 # Mappings Between Boundaries
 
-Currently, the _Vehicle_ is the model of the application, and it is not separated from infrastructure. 
-In conclusion the idea of ports and adapters is not consequently followed. The missing element for a fully decoupled 
+Currently, the _Vehicle_ is the model of the application, and it is not separated from infrastructure.
+In conclusion the idea of ports and adapters is not consequently followed. The missing element for a fully decoupled
 domain from infrastructure is a _mapping between these boundaries_.
 
 ---
 **Mapping**
 
 Mappings between boundaries describes a transformation of the state of a source entity model to a target entity model.
-The following code snippets shows an example of different entity model, where for example the _baumuster_ of 
+The following code snippets shows an example of different entity model, where for example the _baumuster_ of
 _VehicleDto_ must be mapped on the property _modelName_ of _Vehicle_.
 
 ```java
@@ -61,7 +61,7 @@ public class VehicleDto {
 All arguments are true. We have to consider our architecture goals for this decision. Our goals are to create
 a isolated domain, and source code that expresses the domain functionality and language.
 A key element to reach this is mapping. A good balance between boilerplate code and decoupling can be reached by
-simplifying and automating mappings based on the so-called _Two-Way Mapping Strategy_.
+**simplifying** and **automating** mappings based on the so-called **_Two-Way Mapping Strategy_**.
 
 ### Data Transfer Objects Between Layers
 
@@ -79,7 +79,7 @@ detail <i>Data Transfer Object</i> can be a:
 ---
 **Stable Domain and Fast Adaption**
 
-Changes in the infrastructure affect not the domain. For example an external service changes its response model
+Changes to the infrastructure do not affect the domain. For example an external service changes its response model
 then the changes affect only the mapper of the adapter. This single point of change enables us to
 adapt fast to infrastructure changes.
 
@@ -96,7 +96,7 @@ Change comes fast and unexpected. But for sure it comes! Domain-related change c
 * new requirements,
 * growing business model,
 * changing business model,
-* new consumers, 
+* new consumers,
 * and so on.
 
 Since we cannot foresee change, we must look ahead and act. On an architectural level, this means that we have to
@@ -106,7 +106,7 @@ The idea of ports and adapters is a powerful pattern to support change based on 
 infrastructure. Each of them can **grow**, **modernize** and **tested** independently.
 
 ## Output Adapter
- 
+
 <details>
     <summary>Coding Task 3.1</summary>
     <b>Introduce a DbEntity</b>
@@ -130,7 +130,7 @@ public class VehicleDbEntity {
 
 ```
 </details>
-    
+
 <details>
 <summary>Kotlin</summary>
 
@@ -220,12 +220,6 @@ private VehicleDbEntity FindVehicleDbEntity(Vin vin){ ... }
 </details>
 
 As a result you have a compiltation error.
-
-Remember the responsibilities of the class stereotype repository. 
-Which source code elements do you expected in the class 
-<i>VehicleRepository</i>? 
-
-**Make a list**: [Solution](lab3-repository-solution.md)
 
 <b>Introduce a Mapper</b>
 <ol>

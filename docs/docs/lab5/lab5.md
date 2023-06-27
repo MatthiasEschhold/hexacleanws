@@ -168,7 +168,7 @@ Rename the
    
    <details>
       <summary>Java & Kotlin</summary>
-      The <i>CleanArchitectureTest</i> located in <i>src/test/java/com/hexaclean/arc/demo/lab/test</i> is a generic test for checking
+      The <i>CleanArchitectureTest</i> located in <i>src/test/java/de/arkem/hexaclean/arc/demo/lab/test</i> is a generic test for checking
       the architecture rules of the clean architecture pattern based on [ArchUnit](https://www.archunit.org/).
       <br/>
       <b>RUN</b> CleanArchitectureTest
@@ -316,14 +316,14 @@ Vehicle Save(Vehicle vehicle);
 
 ## Rich vs. Anemic Domain Model
 
-Based on the functionality if a vehicle supports a 2G connection, a comparison between a rich or anemic domain model
-will be discussed. Let's imaging the fact if a vehicle supports 2G or not can be derived from the equipment list. If
-there is a 2G modul built-in, then the vehicle supports 2G.
+Based on the functionality if a vehicle supports a 5G connection, a comparison between a rich or anemic domain model
+will be discussed. Let's imaging the fact if a vehicle supports 5G or not can be derived from the equipment list. If
+there is a 5G modul built-in, then the vehicle supports 5G.
 
 This simplified code snippet should make the scenario more clear:
 
 ```java
-boolean determine2GSupport(List<Equipment> equipmentList){
+boolean determine5GSupport(List<Equipment> equipmentList){
      for(Equipment equipment:equipmentList){
          if(equipment.getCode().equals("GS500")){
              return true;
@@ -337,13 +337,13 @@ boolean determine2GSupport(List<Equipment> equipmentList){
 
 <details>
    <summary>Coding Task 5.3</summary>
-Currently, our domain model contains data and validation. Now the functionality to determine 2G support will be added as
+Currently, our domain model contains data and validation. Now the functionality to determine 5G support will be added as
 additional behaviour. The determination can be done without any additional dependencies. So it is possible to integrate
 the behaviour within the domain model.
    <ol>
-      <li>Add the boolean property _has2GSupport_ to the _Vehicle_ and _VehicleResource_ class</li>
+      <li>Add the boolean property _has5GSupport_ to the _Vehicle_ and _VehicleResource_ class</li>
       <li>Extend the <i>VehicleToVehicleResourceMapper</i></li>
-      <li>Implement the behaviour for <i>has2GSupport</i></li>
+      <li>Implement the behaviour for <i>has5GSupport</i></li>
       <li>Trigger the behaviour during object creation or as soon as the equipment list will changed</li>
    </ol>
 </details>
@@ -359,21 +359,14 @@ the behaviour within the domain model.
    <b>RUN</b> all architecture tests
 </details>
 
-## Anemic Domain Model - Domain Service Implement the Behaviour
+## Optional: Clean Domain Model with Full Mapping Strategy
 
-<details>
-<summary>Optional Coding Task 5.4</summary>
-<br/>
-Coming soon ...
-<br/>
-</details>
-
-# Hold the Domain Model Clean with Full Mapping Strategy
+Use the branch <i>lab/{versionnumber}/lab5-full-mapping</i>.
 
 <details>
 <summary>Optional Coding Task 5.5</summary>
 Let's change the scenario a little. For our domain the equipment list is not relevant. We need this only to
-determine the enriched domain value <i>has2GSupport</i>.
+determine the enriched domain value <i>has5GSupport</i>.
 <br/>
 <br/>
 We are very accurate and want to create an absolutely clean domain model. 
@@ -401,13 +394,13 @@ all these rings.
       Remove the property <i>equipmentList</i> in <i>VehicleResource</i>
    </li>
    <li>
-      Move the method <i>determine2GSupport</i> to <i>VehicleQueryService</i> (or to an dedicated domain service)
+      Move the method <i>determine5GSupport</i> to <i>VehicleQueryService</i> (or to a dedicated domain service)
    </li>
    <li>
-      Adapt the constructor of <i>Vehicle</i>, so that the property <i>has2GSupport</i> is part of it.
+      Adapt the constructor of <i>Vehicle</i>, so that the property <i>has5GSupport</i> is part of it.
    </li>
    <li>
-      Change the return value of the use case <i>FetchVehicleMasterData</i>  to <i>VehicleMasterDataDomainDTO</i> 
+      Change the return value of the use case <i>FetchVehicleMasterData</i> to <i>VehicleMasterDataDomainDTO</i> 
    </li>
    <li>
       Adapt the mapper <i>VehicleToVehicleDataDtoMapper</i>
@@ -416,7 +409,7 @@ all these rings.
       Adapt the orchestration within the method <i>findByVin</i> of <i>VehicleQueryService</i> 
    </li>
    <li>
-      Fix the compilation erros in existing unit tests 
+      Fix the compilation errors in existing unit tests 
    </li>
 </ol>
 

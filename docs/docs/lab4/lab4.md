@@ -87,25 +87,29 @@ the <i>VehicleToVehicleResourceMapper</i>.
 ## Introduce the VehicleMasterDataServiceClient
 
 <details>
-<summary>Coding Task 4.3</summary>
+<summary>Coding Task 4.3 and Group Discussion</summary>
 
 There are some constraints given by the company context. There is one central system for 
 vehicle master data. This system provides the necessary master data.
 <br/>
 <br/>
-Due to this you have to introduce the <i>VehicleMasterDataServiceClient</i> and create the adapter 
-implementation with the name <i>VehicleMasterDataToVehiceDtoMapper</i>. 
-The external data object <i>VehicleDataDto</i> (package <i>vehicle/adapter/out/dto</i>) and the 
-outgoing use case FetchVehicleMasterData (package <i>vehicle/usecase/out</i>) are already prepared for this task.
-<br/>
-<br/>
+Due to this the adapter implementation based on the classes <i>VehicleMasterDataServiceClient</i> and <i>VehicleMasterDataToVehiceDtoMapper</i> as well as
+the outgoing use case (package <i>vehicle/adapter/out/dto</i> and <i>vehicle/usecase/out</i>) are introduced.
+
 The external API returns a lot of information we do not need in our domain. This is visible in the
 <i>VehicleDataDto</i> class. For example the property <i>salesRelatedInformation</i> is not needed in our domain.
 Due to this we only extract the properties we defined in the
 <i>VehicleMasterData</i> domain object. 
-<br/>
-<br/>
-Have a look at the <i>VehicleDataDto</i> and implement the service client and mapper.
+
+<ol>
+    <li>
+        Understand the architecture, code and motivation beyond. Discuss it in the group.
+    </li>
+    <li>
+        Connect the <i>VehicleService</i> to the company vehicle master data service according to the clean architecture
+principles.
+    </li>
+</ol>
 
 </details>
 
