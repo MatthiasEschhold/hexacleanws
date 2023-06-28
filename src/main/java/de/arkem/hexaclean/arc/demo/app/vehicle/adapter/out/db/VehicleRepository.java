@@ -20,19 +20,10 @@ public class VehicleRepository implements VehicleDbQuery {
         return mapper.mapVehicleDbEntityToVehicle(findVehicleDbEntity(vin));
     }
 
-    /*private VehicleDbEntity findVehicleDbEntity(Vin vin){
+    private VehicleDbEntity findVehicleDbEntity(Vin vin){
         VehicleDbEntity vehicleDbEntity = new VehicleDbEntity();
         vehicleDbEntity.setVin(vin.value());
         return vehicleDbEntity;
-    }*/
-
-    private VehicleDbEntity findVehicleDbEntity(Vin vin) {
-        VehicleDbEntity dbEntity = new VehicleDbEntity();
-        dbEntity.setVin(VIN);
-        dbEntity.setLicensePlate(LICENSE_PLATE_TEST_VALUE);
-        dbEntity.setMilage(MILEAGE_TEST_VALUE);
-        return dbEntity;
     }
-
 
 }

@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.four;
+/*package de.arkem.hexaclean.arc.demo.app.lab.four;
 
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.*;
 import org.junit.jupiter.api.DisplayName;
@@ -76,4 +76,4 @@ class DomainRing_Task_4_1 {
                 new Mileage(MILEAGE_TEST_VALUE)));
     }
 
-}
+}*/

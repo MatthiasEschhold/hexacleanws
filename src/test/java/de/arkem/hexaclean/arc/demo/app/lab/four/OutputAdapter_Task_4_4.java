@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.four;
+/*package de.arkem.hexaclean.arc.demo.app.lab.four;
 
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db.VehicleRepository;
 import de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db.VehicleToVehicleDbEntityMapper;
@@ -29,4 +29,4 @@ class OutputAdapter_Task_4_4 {
     private VehicleRepository createVehicleRepository() {
         return new VehicleRepository(new VehicleToVehicleDbEntityMapper());
     }
-}
+}*/

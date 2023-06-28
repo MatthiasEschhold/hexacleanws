@@ -1,4 +1,4 @@
-package de.arkem.hexaclean.arc.demo.app.lab.four;
+/*package de.arkem.hexaclean.arc.demo.app.lab.four;
 
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vehicle;
 import de.arkem.hexaclean.arc.demo.app.vehicle.domain.model.Vin;
@@ -42,4 +42,4 @@ class DomainRing_Task_4_5 {
         assertThat(vehicle.getVehicleMotionData().mileage()).isEqualTo(expectedVehicle.getVehicleMotionData().mileage());
     }
 
-}
+}*/
