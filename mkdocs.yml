@@ -29,8 +29,8 @@ theme:
   name: material
   docs_dir: docs
   custom_dir: docs/overrides
-  logo: docs/img/logo.png
-  favicon: docs/img/logo.png
+  logo: docs/img/arkem-white.png
+  favicon: docs/img/arkem-white.png
   icon:
     repo: fontawesome/brands/github
     edit: material/file-edit-outline

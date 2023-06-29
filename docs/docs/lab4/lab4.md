@@ -57,6 +57,8 @@ described in the table below.
 
 <details>
 <summary>Verify 4.1</summary>
+<b>COMMENT IN</b> method createExpectedVehicleMotionData in class SimpleTestObjectFactory
+<br/>
 <b>RUN</b> DomainRing_Task_4_1
 <br/>
 <b>RUN</b> ArchitectureTest_Task_4_1
