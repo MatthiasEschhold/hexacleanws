@@ -2,15 +2,23 @@
 
 Please follow the package, class, and method names as described in the exercises.
 
+## Technical Environment
+
+### Java
+openjdk-20 at least higher than version 18.
+
+### C#
+Coming soon.
+
 ## The Branch Concept for The Labs
 
 ### Lab-Branches for Coding Challenges
 
 ---
-_A codebase for each lab to implement the exercises._
+_A fresh codebase for each lab to implement the exercises._
 
 The exercises build on each other. You always have a fresh sample solution
-in lab branch.
+in the lab branches.
 
 **Branch name pattern:** _lab/{versionNumber}/{labNumber}_
 

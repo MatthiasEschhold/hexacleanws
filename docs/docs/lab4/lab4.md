@@ -7,8 +7,8 @@
 <details>
 <summary>Coding Task 4.1</summary>
 
-Understand the root entity <i>Vehicle</i> and implement the missing value object according to the UML
-class diagram and the validation rules described in the table below.
+Understand the domain object graph of <i>Vehicle</i> and implement the missing validation rules 
+described in the table below.
 
 <details>
 <summary>Value Object Validation Rules</summary>
@@ -70,8 +70,8 @@ class diagram and the validation rules described in the table below.
 <details>
 <summary>Coding Task 4.2</summary>
 
-Extend the <i>VehicleResource</i> like described as follows and adapt the <i>VehicleController</i> as well as 
-the <i>VehicleToVehicleResourceMapper</i>.
+Investigate the <i>VehicleResource</i> and adapt the <i>VehicleToVehicleResourceMapper</i>, 
+so that all properties will be mapped.
 
 </details>
 
@@ -93,34 +93,33 @@ There are some constraints given by the company context. There is one central sy
 vehicle master data. This system provides the necessary master data.
 <br/>
 <br/>
-Due to this the adapter implementation based on the classes <i>VehicleMasterDataServiceClient</i> and <i>VehicleMasterDataToVehiceDtoMapper</i> as well as
-the outgoing use case (package <i>vehicle/adapter/out/dto</i> and <i>vehicle/usecase/out</i>) are introduced.
+Due to this, the adapter implementation based on the classes <i>VehicleMasterDataServiceClient</i> 
+and <i>VehicleMasterDataToVehiceDtoMapper</i> (package <i>vehicle/adapter/out/dto</i>) as well as the 
+outgoing use case (package <i>vehicle/usecase/out</i>) are introduced.
 
 The external API returns a lot of information we do not need in our domain. This is visible in the
-<i>VehicleDataDto</i> class. For example the property <i>salesRelatedInformation</i> is not needed in our domain.
-Due to this we only extract the properties we defined in the
+<i>VehicleDataDto</i> class. For example the property <i>salesRelatedInformation</i> is not needed 
+in our domain. Due to this we only extract the properties we defined in the
 <i>VehicleMasterData</i> domain object. 
 
-<ol>
-    <li>
-        Understand the architecture, code and motivation beyond. Discuss it in the group.
-    </li>
-    <li>
-        Connect the <i>VehicleService</i> to the company vehicle master data service according to the clean architecture
-principles.
-    </li>
-</ol>
+Understand the architecture, code and motivation beyond. Discuss it in the group.
 
-</details>
+[//]: # (</details>)
 
-<details>
-<summary>Verify 4.3</summary>
+[//]: # ()
+[//]: # (<details>)
 
-<b>RUN</b> OutputAdapter_Task_4_3
-<br/>
-<b>RUN</b> all architecture tests
+[//]: # (<summary>Verify 4.3</summary>)
 
-</details>
+[//]: # ()
+[//]: # (<b>RUN</b> OutputAdapter_Task_4_3)
+
+[//]: # (<br/>)
+
+[//]: # (<b>RUN</b> all architecture tests)
+
+[//]: # ()
+[//]: # (</details>)
 
 ## Extend the Output Adapter
 
@@ -129,8 +128,9 @@ principles.
 <details>
 <summary>Coding Task 4.4</summary>
 
-The vehicle motion data and other informations that not belongs to vehicle master data will be store in the database
-of our application. This means we are owner of data and state for vehicle motion data.
+The vehicle motion data and other information that not belongs to vehicle master data, will 
+be stored in the database of our application. This means we are owner of data and state for 
+vehicle motion data.
 
 Extend the <i>VehicleDbEntity</i> and the <i>VehicleToVehicleDbEntityMapper</i> as described in the diagram.
 
@@ -150,7 +150,8 @@ Extend the <i>VehicleDbEntity</i> and the <i>VehicleToVehicleDbEntityMapper</i> 
 <summary>Coding Task 4.5</summary>
 
 Extend the <i>VehicleService</i>, so that vehicle motion data will be queried from database, and 
-vehicle master data will be queried from a external API.
+vehicle master data will be queried from the central company vehicle master data service.
+Use the use case <i>FetchVehicleMasterData</i>.
 
 </details>
 
