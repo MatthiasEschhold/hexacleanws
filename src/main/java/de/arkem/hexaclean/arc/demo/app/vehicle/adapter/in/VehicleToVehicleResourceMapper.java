@@ -20,6 +20,7 @@ public interface VehicleToVehicleResourceMapper {
     Vehicle mapVehicleResourceToVehicle(VehicleResource resource);
 
     @Mapping(source = "description", target = "description")
+    @Mapping(source = "code", target = "code.value")
     Equipment mapEquipmentResourceToEquipment(EquipmentResource resource);
 
     @Mapping(source = "licensePlate", target = "licensePlate.value")
@@ -41,6 +42,7 @@ public interface VehicleToVehicleResourceMapper {
 
 
     @Mapping(target = "description", source = "description")
+    @Mapping(target = "code", source = "code.value")
     EquipmentResource mapEquipmentResourceToEquipment(Equipment equipment);
 
     @Named("mapToMileageUnitPrimitive")

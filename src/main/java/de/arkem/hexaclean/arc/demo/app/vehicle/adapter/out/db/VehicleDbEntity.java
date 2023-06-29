@@ -1,7 +1,6 @@
 package de.arkem.hexaclean.arc.demo.app.vehicle.adapter.out.db;
 
 public class VehicleDbEntity {
-
     private String vin;
 
     public String getVin() {

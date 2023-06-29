@@ -1,13 +1,15 @@
 package de.arkem.hexaclean.arc.demo.app.lab.clean.arch.test;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
+import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import de.arkem.hexaclean.arc.demo.app.lab.TestConstants;
 import de.arkem.hexaclean.arc.demo.app.lab.clean.arch.template.CleanArchitecture;
 import de.arkem.hexaclean.arc.demo.app.lab.clean.arch.template.CleanArchitectureCheck;
 
-@AnalyzeClasses(packages = TestConstants.ROOT_PACKAGE)
+@AnalyzeClasses(packages = TestConstants.ROOT_PACKAGE,
+importOptions = {ImportOption.DoNotIncludeTests.class})
 public class CleanArchitectureTest {
 
     @ArchTest

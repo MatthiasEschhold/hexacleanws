@@ -9,6 +9,9 @@ public class VehicleResource {
     private String vehicleModelType;
     private String serialNumber;
 
+    private String licensePlate;
+
+    private double mileage;
     private List<EquipmentResource> equipmentList;
 
     public String getVin() {
@@ -57,5 +60,21 @@ public class VehicleResource {
 
     public void setEquipmentList(List<EquipmentResource> equipmentList) {
         this.equipmentList = equipmentList;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public double getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(double mileage) {
+        this.mileage = mileage;
     }
 }
