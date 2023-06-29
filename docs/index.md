@@ -5,7 +5,8 @@ Please follow the package, class, and method names as described in the exercises
 ## Technical Environment
 
 ### Java
-openjdk-20 at least higher than version 18.
+* openjdk-20 
+* At least higher than version 18.
 
 ### C#
 Coming soon.
