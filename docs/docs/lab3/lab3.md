@@ -263,6 +263,10 @@ public VehicleRootEntity MapVehicleDbEntityToVehicle(VehicleDbEntity dbEntity){.
 
 <details>
 <summary>Verify 3.2</summary>
+<b>COMMENT IN</b> method createVehicleDbEntity in class TestObjectFactory
+<br/>
+<b>COMMENT IN</b> method createVehicleRepository in class TestObjectFactory
+<br/>
 <b>RUN</b> Mapper_Task_3_2
 <br/>
 <b>RUN</b> OutputAdapter_Task_3_2
@@ -348,6 +352,8 @@ Sources for AutoMapper:
 
 <details>
 <summary>Verify 3.3</summary>
+<b>COMMENT IN</b> method createExpectedVehicleResource in class TestObjectFactory
+<br/>
 <b>RUN</b> InputAdapter_Task_3_3
 <br/>
 <b>RUN</b> ArchitectureTest_Task_3_3
