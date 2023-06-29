@@ -35,7 +35,6 @@ public class SimpleTestObjectFactory {
 
     //comment in for lab 4.1
     public static VehicleMotionData createExpectedVehicleMotionData() {
-        //return null;
         return new VehicleMotionData(new LicensePlate(LICENSE_PLATE_TEST_VALUE),
                 new Mileage(MILEAGE_TEST_VALUE));
     }
