@@ -8,7 +8,7 @@ Please follow the package, class, and method names as described in the exercises
 * openjdk-20 
 * At least higher than version 18.
 
-### C#
+### C Sharp
 Coming soon.
 
 ## The Branch Concept for The Labs
