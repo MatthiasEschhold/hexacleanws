@@ -104,24 +104,9 @@ The external API returns a lot of information we do not need in our domain. This
 in our domain. Due to this we only extract the properties we defined in the
 <i>VehicleMasterData</i> domain object. 
 
-Understand the architecture, code and motivation beyond. Discuss it in the group.
+Understand the architecture, code and motivation. Discuss it in the group.
 
-[//]: # (</details>)
-
-[//]: # ()
-[//]: # (<details>)
-
-[//]: # (<summary>Verify 4.3</summary>)
-
-[//]: # ()
-[//]: # (<b>RUN</b> OutputAdapter_Task_4_3)
-
-[//]: # (<br/>)
-
-[//]: # (<b>RUN</b> all architecture tests)
-
-[//]: # ()
-[//]: # (</details>)
+</details>
 
 ## Extend the Output Adapter
 
