@@ -56,7 +56,6 @@ pip install mkdocs-material-extensions
 
 # Publish Lab Description Locally with MkDocs
 
-1. cd docs
-2. mkdocs build
-3. mkddocs serve
-4. [Open in browser](http://127.0.0.1:8000/hexacleanws/)
+1. mkdocs build
+2. mkddocs serve
+3. [Open in browser](http://127.0.0.1:8000/hexacleanws/)
