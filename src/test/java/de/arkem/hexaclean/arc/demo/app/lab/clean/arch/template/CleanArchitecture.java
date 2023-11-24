@@ -2,7 +2,6 @@ package de.arkem.hexaclean.arc.demo.app.lab.clean.arch.template;
 
 import com.tngtech.archunit.PublicAPI;
 import com.tngtech.archunit.base.DescribedPredicate;
-import com.tngtech.archunit.base.Optional;
 import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.lang.ArchRule;
@@ -288,6 +287,7 @@ public final class CleanArchitecture implements ArchRule {
 
     private Architectures.LayeredArchitecture allRingsArchitecturalExpressive() {
         Architectures.LayeredArchitecture layeredArchitectureDelegate = Architectures.layeredArchitecture()
+                .consideringOnlyDependenciesInLayers()
                 .layer(DOMAIN_MODEL).definedBy(this.domainModelPackageIdentifier)
                 .layer(DOMAIN_SERVICE).definedBy(this.domainServicePackageIdentifier)
                 .optionalLayer(APPLICATION_SERVICE).definedBy(this.applicationServicePackageIdentifier)
@@ -367,6 +367,7 @@ public final class CleanArchitecture implements ArchRule {
 
     private Architectures.LayeredArchitecture domainRingAndUseCaseRingArchitecturalExpressive() {
         Architectures.LayeredArchitecture layeredArchitectureDelegate = Architectures.layeredArchitecture()
+                .consideringOnlyDependenciesInLayers()
                 .layer(DOMAIN_MODEL).definedBy(this.domainModelPackageIdentifier)
                 .layer(DOMAIN_SERVICE).definedBy(this.domainServicePackageIdentifier)
                 .optionalLayer(APPLICATION_SERVICE).definedBy(this.applicationServicePackageIdentifier)
@@ -437,6 +438,7 @@ public final class CleanArchitecture implements ArchRule {
 
     private Architectures.LayeredArchitecture domainRingArchitecturalExpressive() {
         Architectures.LayeredArchitecture layeredArchitectureDelegate = Architectures.layeredArchitecture()
+                .consideringOnlyDependenciesInLayers()
                 .layer(DOMAIN_MODEL).definedBy(this.domainModelPackageIdentifier)
                 .layer(DOMAIN_SERVICE).definedBy(this.domainServicePackageIdentifier)
                 .layer(ADAPTER).definedBy(this.adapterPackageIdentifier)
@@ -505,6 +507,7 @@ public final class CleanArchitecture implements ArchRule {
 
     private Architectures.LayeredArchitecture ringsAsLayers() {
         Architectures.LayeredArchitecture layeredArchitectureDelegate = Architectures.layeredArchitecture()
+                .consideringOnlyDependenciesInLayers()
                 .layer(DOMAIN).definedBy(this.domainPackageIdentifier)
                 .optionalLayer(APPLICATION).definedBy(this.applicationPackageIdentifier)
                 .layer(USECASE).definedBy(this.useCasePackageIdentifier)
