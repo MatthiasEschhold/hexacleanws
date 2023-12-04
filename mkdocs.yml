@@ -1,0 +1,60 @@
+---
+site_name: Clean Architecture Training
+site_url: https://matthiaseschhold.github.io/hexacleanws/
+repo_url: https://github.com/MatthiasEschhold/hexacleanws
+repo_name: MatthiasEschhold/hexacleanws
+edit_uri: edit/develop/documentation/docs/
+
+extra_css:
+  - css/custom.css
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - footnotes
+  - attr_list
+  - toc:
+      toc_depth: 2-6
+      permalink: ⚓︎
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+theme:
+  name: material
+  docs_dir: docs
+  custom_dir: docs/overrides
+  logo: docs/img/arkem-white.png
+  favicon: docs/img/logo.png
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/file-edit-outline
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.footer
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+
+plugins:
+  - search
+
+nav:
+  - Home: 'index.md'
+  - Access Lab Description: 'mkdocs.md'
+  - Domain Ring und Use Case Ring: 'docs/lab1/lab1.md'
+  - Adapter Ring: 'docs/lab2/lab2.md'
+  - Weitere Information zu Mappings: 'docs/lab3/lab3.md'
+  - Ausbau mit weiteren Anforderungen: 'docs/lab4/lab4.md'
+  - Weitere Informationen zum Schneiden von Use Cases: 'docs/lab5/lab5.md'
+  - Git Utils: 'docs/help/git.md'
